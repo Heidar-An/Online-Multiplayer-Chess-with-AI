@@ -1,2 +1,2 @@
-# ChessAI-with-minimax-algorithm-and-alpha-beta-pruning
+# Online Multiplayer Chess with AI
 Created in python library, Pygame. Allows user to choose between AI or play on the same computer.
