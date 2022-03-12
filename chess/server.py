@@ -1,4 +1,4 @@
-import socket
+import socket ## used for connecting users together ##
 import threading
 import pickle
 from chess.layoutBoardObject import Board
