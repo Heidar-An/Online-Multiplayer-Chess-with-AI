@@ -595,6 +595,12 @@ def mainMoveFunction():
         updateChessScreen()
         checkmateCheck(chessBoard.playerOneTurn)
 
+def waitingForOtherPlayer():
+    """
+    This function is responsible for displaying text
+    showing the user is waiting for another player
+    """
+    
 
 # Make sure that there is another player in the game
 def onlineCheckForOtherPlayer():
@@ -603,12 +609,13 @@ def onlineCheckForOtherPlayer():
         # code can start
         return True
     else:
+        waitingForOtherPlayer()
         while True:
             otherPlayerCondition = networkClient.checkForOtherPlayer()
-            
+            # if the otherPlayerCondition is true, then there is another player
             if otherPlayerCondition:
                 return True
-
+            # else another player still has not come
 
 
 
