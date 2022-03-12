@@ -600,7 +600,14 @@ def waitingForOtherPlayer():
     This function is responsible for displaying text
     showing the user is waiting for another player
     """
-    
+font = pg.font.SysFont("Helvetica", 75)
+textPrint = "Player 1 Won!"
+if chessBoard.playerOneTurn:
+    textPrint = "Player 2 Won!"
+text = font.render(textPrint, True, TURQUOISE)
+window.blit(text, (display[0] // 4, display[1] // 4))
+pg.display.update()
+
 
 # Make sure that there is another player in the game
 def onlineCheckForOtherPlayer():
