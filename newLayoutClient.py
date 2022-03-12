@@ -465,7 +465,8 @@ def againstOthersMenu():
             onlinePreviousBoardPosition = networkClient.chessBoard.board
             if onlineColourId == "b":
                 networkClient.chessBoard.otherPlayer = True
-
+            else:
+                onlineCheckForOtherPlayer
             onlinePlayerOneTurn = True
 
             updateChessScreen()
