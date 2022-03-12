@@ -1,5 +1,5 @@
-from chess.PieceMovements import Pawn, Knight, Bishop, Rook, Queen, King
-import copy
+from chess.PieceMovements import Pawn, Knight, Bishop, Rook, Queen, King ## used to get an object of each piece to place into the chessboard ##
+import copy ## used to copy variables and not affect the original variable ##
 
 bp = Pawn("b")
 bk = King("b")
