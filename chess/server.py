@@ -1,8 +1,8 @@
 import socket ## used for connecting users together ##
 import threading ## used to manage each user in a seperate thread ##
-import pickle
-from chess.layoutBoardObject import Board
-
+import pickle # used to transfer data across the internet, similar to JSON ##
+from chess.layoutBoardObject import Board ## used to get Board class to get an object and save each game in a list ##
+ 
 # used for server side of chess
 HEADER = 64
 PORT = 5050
