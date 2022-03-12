@@ -605,7 +605,10 @@ def onlineCheckForOtherPlayer():
     else:
         while True:
             otherPlayerCondition = networkClient.checkForOtherPlayer()
-            if otherPlayerCondition
+            
+            if otherPlayerCondition:
+                return True
+
 
 
 
