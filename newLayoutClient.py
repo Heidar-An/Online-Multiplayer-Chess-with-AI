@@ -604,7 +604,7 @@ def waitingForOtherPlayer():
     font = pg.font.SysFont("Helvetica", 75)
     textPrint = "Waiting for another player..."
     text = font.render(textPrint, True, TURQUOISE)
-    window.blit(text, (display[0] // 4, display[1] // 4))
+    window.blit(text, (display[0] // 6, display[1] // 6))
     pg.display.update()
 
 
