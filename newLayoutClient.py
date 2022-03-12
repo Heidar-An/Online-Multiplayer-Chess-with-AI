@@ -597,8 +597,6 @@ def mainMoveFunction():
 
 
 
-
-
 # Make sure that there is another player in the game
 def onlineCheckForOtherPlayer():
     pass
