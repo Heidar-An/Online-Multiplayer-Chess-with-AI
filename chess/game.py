@@ -1,4 +1,4 @@
-import pygame as pg
+import pygame as pg ## used for display and graphics ##
 from pygame import *
 from chess.layoutBoardObject import Board
 from chess.client import Client
