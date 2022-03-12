@@ -615,6 +615,7 @@ def onlineCheckForOtherPlayer():
         # code can start
         return True
     else:
+        updateChessScreen()
         waitingForOtherPlayer()
         while True:
             otherPlayerCondition = networkClient.checkForOtherPlayer()
