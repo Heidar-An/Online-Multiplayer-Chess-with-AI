@@ -601,10 +601,10 @@ def waitingForOtherPlayer():
     This function is responsible for displaying text
     showing the user is waiting for another player
     """
-    font = pg.font.SysFont("Helvetica", 75)
+    font = pg.font.SysFont("Helvetica", 60)
     textPrint = "Waiting for another player..."
     text = font.render(textPrint, True, TURQUOISE)
-    window.blit(text, (display[0] // 6, display[1] // 6))
+    window.blit(text, (display[0] // 8, 0))
     pg.display.update()
 
 
