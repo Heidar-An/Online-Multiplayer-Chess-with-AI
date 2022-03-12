@@ -2,7 +2,7 @@ import pygame as pg ## used for display and graphics ##
 from pygame import * ## so the program does not need to say pygame.something##
 from chess.layoutBoardObject import Board ## imports the board class ##
 from chess.client import Client
-import time
+import time ## imports time so it can be used for the timer of each player ##
 import copy
 
 chessBoard = Board()
