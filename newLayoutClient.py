@@ -417,6 +417,70 @@ def mainMenu():
         elif changeColButton.collidepoint(mouse):
             changeColor = True
 
+def againstOthersMenu():
+"""Against Others Menu"""
+global onlinePlayer, twoPlayer, playerMode, networkClient, onlinePlayerOneTurn, onlineColourId, onlineBoardObject, onlinePreviousBoardPosition
+window.fill(WHITE)
+widthCheck = display[0]
+heightCheck = display[1]
+
+# Title of program
+chessTitle = mediumFont.render("Choose Mode", True, RED)
+window.blit(chessTitle, (widthCheck // 3 + 40, 20))
+
+# Two Buttons
+playOnlineButton = pg.Rect((widthCheck / 8), (heightCheck / 3), widthCheck / 4, 50)
+playOnline = mediumFont.render("Online Play", True, WHITE)
+playOnlineRect = playOnline.get_rect()
+playOnlineRect.center = playOnlineButton.center
+pg.draw.rect(window, BLACK, playOnlineButton)
+window.blit(playOnline, playOnlineRect)
+
+playLocalButton = pg.Rect(5 * (widthCheck / 8), (heightCheck / 3), widthCheck / 4, 50)
+playLocal = mediumFont.render("Local Play", True, WHITE)
+playLocalRect = playLocal.get_rect()
+playLocalRect.center = playLocalButton.center
+pg.draw.rect(window, BLACK, playLocalButton)
+window.blit(playLocal, playLocalRect)
+
+# button that allows user to go back to the main menu
+goBackButton = pg.Rect((widthCheck // 16), 100, widthCheck // 5, 50)
+goBack = mediumFont.render("Go Back", True, WHITE)
+goBackRect = goBack.get_rect()
+goBackRect.center = goBackButton.center
+pg.draw.rect(window, BLACK, goBackButton)
+window.blit(goBack, goBackRect)
+
+# if the mouse clicks button then assign what menu to go to
+click, _, _ = pg.mouse.get_pressed()
+if click == 1:
+    mouse = pg.mouse.get_pos()
+    if playOnlineButton.collidepoint(mouse):
+        # move to online game mode
+        onlinePlayer = True
+        playerMode = False
+
+        networkClient = Client()
+        onlineColourId = networkClient.colourId
+        onlinePreviousBoardPosition = networkClient.chessBoard.board
+        if onlineColourId == "b":
+            networkClient.chessBoard.otherPlayer = True
+
+        onlinePlayerOneTurn = True
+
+        updateChessScreen()
+        pg.display.update()
+    elif playLocalButton.collidepoint(mouse):
+        # play on the same computer
+        twoPlayer = True
+        playerMode = False
+        updateChessScreen()
+        pg.display.update()
+    elif goBackButton.collidepoint(mouse):
+        # go back to the main menu
+        playerMode = False
+        pg.display.update()
+pg.display.update()
 
 def AIMinimax(positionCheck, alpha, beta, depth, maximise):
     """Find the best move for the AI"""
@@ -532,70 +596,7 @@ def mainMoveFunction():
         checkmateCheck(chessBoard.playerOneTurn)
 
 
-def againstOthersMenu():
-    """Against Others Menu"""
-    global onlinePlayer, twoPlayer, playerMode, networkClient, onlinePlayerOneTurn, onlineColourId, onlineBoardObject, onlinePreviousBoardPosition
-    window.fill(WHITE)
-    widthCheck = display[0]
-    heightCheck = display[1]
 
-    # Title of program
-    chessTitle = mediumFont.render("Choose Mode", True, RED)
-    window.blit(chessTitle, (widthCheck // 3 + 40, 20))
-
-    # Two Buttons
-    playOnlineButton = pg.Rect((widthCheck / 8), (heightCheck / 3), widthCheck / 4, 50)
-    playOnline = mediumFont.render("Online Play", True, WHITE)
-    playOnlineRect = playOnline.get_rect()
-    playOnlineRect.center = playOnlineButton.center
-    pg.draw.rect(window, BLACK, playOnlineButton)
-    window.blit(playOnline, playOnlineRect)
-
-    playLocalButton = pg.Rect(5 * (widthCheck / 8), (heightCheck / 3), widthCheck / 4, 50)
-    playLocal = mediumFont.render("Local Play", True, WHITE)
-    playLocalRect = playLocal.get_rect()
-    playLocalRect.center = playLocalButton.center
-    pg.draw.rect(window, BLACK, playLocalButton)
-    window.blit(playLocal, playLocalRect)
-
-    # button that allows user to go back to the main menu
-    goBackButton = pg.Rect((widthCheck // 16), 100, widthCheck // 5, 50)
-    goBack = mediumFont.render("Go Back", True, WHITE)
-    goBackRect = goBack.get_rect()
-    goBackRect.center = goBackButton.center
-    pg.draw.rect(window, BLACK, goBackButton)
-    window.blit(goBack, goBackRect)
-
-    # if the mouse clicks button then assign what menu to go to
-    click, _, _ = pg.mouse.get_pressed()
-    if click == 1:
-        mouse = pg.mouse.get_pos()
-        if playOnlineButton.collidepoint(mouse):
-            # move to online game mode
-            onlinePlayer = True
-            playerMode = False
-
-            networkClient = Client()
-            onlineColourId = networkClient.colourId
-            onlinePreviousBoardPosition = networkClient.chessBoard.board
-            if onlineColourId == "b":
-                networkClient.chessBoard.otherPlayer = True
-
-            onlinePlayerOneTurn = True
-
-            updateChessScreen()
-            pg.display.update()
-        elif playLocalButton.collidepoint(mouse):
-            # play on the same computer
-            twoPlayer = True
-            playerMode = False
-            updateChessScreen()
-            pg.display.update()
-        elif goBackButton.collidepoint(mouse):
-            # go back to the main menu
-            playerMode = False
-            pg.display.update()
-    pg.display.update()
 
 
 # Make sure that there is another player in the game
