@@ -1,5 +1,5 @@
 import pygame as pg ## used for display and graphics ##
-from pygame import *
+from pygame import * ## so the program does not need to say pygame.something##
 from chess.layoutBoardObject import Board
 from chess.client import Client
 import time
