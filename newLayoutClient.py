@@ -596,10 +596,17 @@ def mainMoveFunction():
         checkmateCheck(chessBoard.playerOneTurn)
 
 
-
 # Make sure that there is another player in the game
 def onlineCheckForOtherPlayer():
-    if()
+    if onlineColourId == "b":
+        # there is another player
+        # code can start
+        return True
+    else:
+        while True:
+            otherPlayerCondition = networkClient.checkForOtherPlayer()
+            if otherPlayerCondition
+
 
 
 def onlineCompareLists(currentBoardPosition):
