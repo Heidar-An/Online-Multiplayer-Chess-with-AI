@@ -38,6 +38,13 @@ class Client:
         """Find out if the player with the black pieces is here"""
         print("[CHECKING] Checking for other player")
         self.socket.send("CheckOtherPlayer".encode(self.format))
+        # the server will be returning if there is another player 
+        # with a boolean value
+        otherPlayerCondition = self.socket.recv(5)
+        otherPlayerCondition = otherPlayerCondition.decode(self.format)
+
+        otherPlayerCondition = bool(otherPlayerCondition)
+        return otherPlayerCondition
 
     def lostConnection(self):
         """Called if user leaves/loses connection, close the socket"""
