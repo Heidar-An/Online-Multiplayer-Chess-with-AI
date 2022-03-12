@@ -1,4 +1,4 @@
-import socket
+import socket ## used for connecting users together ##
 import pickle
 
 
