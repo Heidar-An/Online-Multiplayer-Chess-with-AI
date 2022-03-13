@@ -5,79 +5,79 @@ from chess.client import Client ## imports the client class ##
 import time ## imports time so it can be used for the timer of each player ##
 import copy ## used to copy variables and arrays and not change the original variable ##
 
-chessBoard = Board()
+chessBoard = Board() # create a new board object
 
 
 # defining colours
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-RED = (255, 0, 0)
-GREEN = (0, 128, 0)
-TURQUOISE = (64, 224, 208)
-GREY = (128, 128, 128)
-ORANGE = (255, 165, 0)
-BoardColour = (165, 42, 42)
+# variables are in caps because they are constants
+WHITE = (255, 255, 255) # colour in RGB form
+BLACK = (0, 0, 0) # colour in RGB form
+RED = (255, 0, 0) # colour in RGB form
+GREEN = (0, 128, 0) # colour in RGB form
+TURQUOISE = (64, 224, 208) # colour in RGB form
+GREY = (128, 128, 128) # colour in RGB form
+ORANGE = (255, 165, 0) # colour in RGB form
+BoardColour = (165, 42, 42) # colour in RGB form
 
 display = [800, 800]
 
 # defining some datastructures and variables
-onlinePossible = [["" for i in range(8)] for j in range(8)]
-onlineBoardPosition = [["" for x in range(8)] for y in range(8)]
-onlineBoardObject, onlinePreviousBoardPosition = None, onlineBoardPosition
-clock = pg.time.Clock()
-row, column = None, None
+onlinePossible = [["" for i in range(8)] for j in range(8)] # create empty 8x8 array
+onlineBoardPosition = [["" for x in range(8)] for y in range(8)] # create empty 8x8 array
+onlineBoardObject, onlinePreviousBoardPosition = None, onlineBoardPosition # assign variables
+clock = pg.time.Clock() # assign variable
+row, column = None, None # assign variables
 
 whiteKingHasMoved, kingWillMove = False, False
-playerMove, checkmateCondition, twoPlayer, AIPlayer, onlinePlayer, playerMode = False, False, False, False, False, False
-changeColor, AiDifficulty = False, False
-networkClient, onlinePlayerOneTurn, onlineColourId = None, None, ""
-AiDepth, seconds = 2, 0
+playerMove, checkmateCondition, twoPlayer, AIPlayer, onlinePlayer, playerMode = False, False, False, False, False, False # assign variables
+changeColor, AiDifficulty = False, False # assign variables
+networkClient, onlinePlayerOneTurn, onlineColourId = None, None, "" # assign variables
+AiDepth, seconds = 2, 0 # assign variables
 
-rDrag, gDrag, bDrag = False, False, False
-rXPos = (display[0] // 8) + 30
-gXPos = (display[0] // 8) + 30
-bXPos = (display[0] // 8) + 30
-rCol, gCol, bCol = 0, 0, 0
+rDrag, gDrag, bDrag = False, False, False # assign variables
+rXPos = (display[0] // 8) + 30 # initial position of slider
+gXPos = (display[0] // 8) + 30 # initial position of slider
+bXPos = (display[0] // 8) + 30 # initial position of slider
+rCol, gCol, bCol = 0, 0, 0 # initial value of sliders
 
-previousTime = time.time()
-playerOneTime, playerTwoTime = 600, 600
-playerOneMin, playerOneSec = divmod(playerOneTime, 60)
-playerTwoMin, playerTwoSec = divmod(playerTwoTime, 60)
-timeSeconds = 0
+previousTime = time.time() # assign variables
+playerOneTime, playerTwoTime = 600, 600 # initial time of players in seconds
+playerOneMin, playerOneSec = divmod(playerOneTime, 60) # make time in terms of minutes and seconds
+playerTwoMin, playerTwoSec = divmod(playerTwoTime, 60) # make time in terms of minutes and seconds
+timeSeconds = 0 # assign variable
 
-pg.init()
-window = pg.display.set_mode(display, pg.RESIZABLE)
-mediumFont = pg.font.SysFont("Helvetica", 28)
+pg.init() # start the program
+window = pg.display.set_mode(display, pg.RESIZABLE) # show window and allow window to be resized
+mediumFont = pg.font.SysFont("Helvetica", 28) # create a global font variable
 
 def updateChessScreen():
     """used to create the chessboard and call updateImages"""
-    window.fill(BLACK)
+    window.fill(BLACK) # background of screen has to be black
     for j in range(8):
         for i in range(8):
             if (i + j) % 2 == 0:
-                rectangle = pg.Rect(i * 70, j * 70 + 110, 70, 70)
-                pg.draw.rect(window, BoardColour, rectangle)
+                rectangle = pg.Rect(i * 70, j * 70 + 110, 70, 70) # display 70 by 70 squares in this specific location
+                pg.draw.rect(window, BoardColour, rectangle) # draw rectangle here
             else:
-                rectangle = pg.Rect(i * 70, j * 70 + 110, 70, 70)
-                pg.draw.rect(window, WHITE, rectangle)
-
+                rectangle = pg.Rect(i * 70, j * 70 + 110, 70, 70) # display 70 by 70 squares in this specific location
+                pg.draw.rect(window, WHITE, rectangle) # draw rectangle here
 
     # put chess images on the screen
-    updateImages()
-    pg.display.update()
+    updateImages() # call function to display images
+    pg.display.update() # update the screen to show the changes to the user
 
 
 def updateImages():
     """used to add images to the chessboard"""
-    currentBoard = chessBoard.board
+    currentBoard = chessBoard.board # assign what the chessboard is
     if networkClient is not None:
-        currentBoard = networkClient.chessBoard.board
+        currentBoard = networkClient.chessBoard.board # if there is an online game, change what the chessboard is
     for i in range(8):
         for j in range(8):
             if currentBoard[j][i] != "":
                 img = pg.image.load(currentBoard[j][i].image).convert_alpha()
-                img = pg.transform.smoothscale(img, (68, 68))
-                window.blit(img, (i * 70, j * 70 + 110))
+                img = pg.transform.smoothscale(img, (68, 68)) # images are size 68 by 68, so this is native size
+                window.blit(img, (i * 70, j * 70 + 110)) # display image on the correct location
 
 
 def getEvaluation(positionCheck, condition, fakePosition):
@@ -112,12 +112,12 @@ def checkmate(boardPosition, playerOneTurn, test):
 
 def moves(possibleMoves):
     """shows all the possible moves available"""
-    updateChessScreen()
+    updateChessScreen() # call this function first to show the position of pieces
     for i in range(8):
         for j in range(8):
             if possibleMoves[i][j] != "":
-                pg.draw.circle(window, GREEN, (j * 70 + 35, i * 70 + 110 + 35), 7)
-    pg.display.update()
+                pg.draw.circle(window, GREEN, (j * 70 + 35, i * 70 + 110 + 35), 7) # display green circle
+    pg.display.update() # update the screen for the player to see
 
 
 def findKing(boardPosition):
@@ -127,13 +127,11 @@ def findKing(boardPosition):
 
 def kingInCheck(boardPosition, playerOneTurn):
     """check if king is in check"""
-
     return chessBoard.kingInCheck(boardPosition, playerOneTurn)
 
 
 def moveEndCheck(newColumn, newRow, boardPosition, playerOneTurn):
     """checks if move sent to function would remove check, false means that the king won't be in check"""
-
     return chessBoard.moveEndCheck(newColumn, newRow, row, column, boardPosition, playerOneTurn)
 
 
@@ -141,52 +139,6 @@ def moveEndCheckPosition(newColumn, newRow, oldColumn, oldRow, boardPosition, pl
     """checks if move sent to function would remove check used for checkmate function, false means that the king
     won't be in check """
     return chessBoard.moveEndCheck(newColumn, newRow, oldRow, oldColumn, boardPosition, playerOneTurn)
-
-
-# def kingCheck(row, column, possibleMoves, positionCheck):
-#     """Get king's possible moves"""
-#     global kingWillMove
-#     colour = positionCheck[row][column].colour
-#     # all king moves
-#     for i in range(-1, 2):
-#         for j in range(-1, 2):
-#             if check(row + i, column + j):
-#                 if positionCheck[row + i][column + j] == "":
-#                     possibleMoves[row + i][column + j] = "green"
-#                 elif positionCheck[row + i][column + j].colour != colour:
-#                     possibleMoves[row + i][column + j] = "green"
-#     # Castling
-#     if colour == "w":
-#         if row == 7 and column == 4:
-#             if positionCheck[7][4].moved is False:
-#                 if positionCheck[7][5] == "" and positionCheck[7][6] == "" and positionCheck[7][7] != "":
-#                     if positionCheck[7][7].type == "r":
-#                         if positionCheck[7][7].moved is False:
-#                             possibleMoves[7][6] = "green"
-#                             kingWillMove = True
-#                 if positionCheck[7][3] == "" and positionCheck[7][2] == "" and positionCheck[7][1] == "" and \
-#                         positionCheck[7][0] != "":
-#                     if positionCheck[7][0].type == "r":
-#                         if positionCheck[7][0].moved is False:
-#                             possibleMoves[7][2] = "green"
-#                             kingWillMove = True
-#     if colour == "b":
-#         if row == 0 and column == 4:
-#             if positionCheck[0][4].moved is False:
-#                 if positionCheck[0][5] == "" and positionCheck[0][6] == "" and positionCheck[0][7] != "":
-#                     if positionCheck[0][7].type == "r":
-#                         if positionCheck[0][7].moved is False:
-#                             possibleMoves[0][6] = "green"
-#                             kingWillMove = True
-#                 if positionCheck[0][3] == "" and positionCheck[0][2] == "" and positionCheck[0][1] == "" and \
-#                         positionCheck[0][0] != "":
-#                     if positionCheck[0][0].type == "r":
-#                         if positionCheck[0][0].moved is False:
-#                             possibleMoves[0][2] = "green"
-#                             kingWillMove = True
-#
-#     return possibleMoves
-
 
 def pieceMoves(pieceY, pieceX, possibleMoves, boardPosition):
     """each piece will have different possible moves, this calls the correct one"""
@@ -197,83 +149,83 @@ def changeColorMenu(events):
     """Show the sliders for changing colour of the board"""
     global rDrag, gDrag, bDrag, rXPos, gXPos, bXPos, rCol, gCol, bCol, changeColor, BoardColour
 
-    window.fill(WHITE)
+    window.fill(WHITE) # fill the background to be white
 
-    widthCheck = display[0]
-    heightCheck = display[1]
-    xStart = (widthCheck // 8) + 30
+    widthCheck = display[0] # create variable for width
+    heightCheck = display[1] # create variable for height
+    xStart = (widthCheck // 8) + 30 # assign variable for where position of slider starts
 
     # Text
-    currentColorText = mediumFont.render("Current Color", True, BLACK)
-    window.blit(currentColorText, (widthCheck // 3 + 50, 20))
+    currentColorText = mediumFont.render("Current Color", True, BLACK) # create text for "current colour"
+    window.blit(currentColorText, (widthCheck // 3 + 50, 20)) # put text onto the screen
 
-    rgbSentence = "RGB: (" + str(rCol) + ", " + str(gCol) + ", " + str(bCol) + ")"
-    rgbText = mediumFont.render(rgbSentence, True, BLACK)
-    window.blit(rgbText, (widthCheck // 3 + 50, 290))
+    rgbSentence = "RGB: (" + str(rCol) + ", " + str(gCol) + ", " + str(bCol) + ")" # create string
+    rgbText = mediumFont.render(rgbSentence, True, BLACK) # create text object
+    window.blit(rgbText, (widthCheck // 3 + 50, 290)) # put text onto the screen
 
-    rText = mediumFont.render("R: ", True, BLACK)
-    gText = mediumFont.render("G: ", True, BLACK)
-    bText = mediumFont.render("B: ", True, BLACK)
-    window.blit(rText, (xStart - 50, heightCheck // 2 + 45))
-    window.blit(gText, (xStart - 50, (heightCheck // 2) + 125))
-    window.blit(bText, (xStart - 50, (heightCheck // 2) + 205))
+    rText = mediumFont.render("R: ", True, BLACK) # text for R:
+    gText = mediumFont.render("G: ", True, BLACK) # text for G:
+    bText = mediumFont.render("B: ", True, BLACK) # text for B:
+    window.blit(rText, (xStart - 50, heightCheck // 2 + 45)) # put text onto the screen
+    window.blit(gText, (xStart - 50, (heightCheck // 2) + 125)) # put text onto the screen
+    window.blit(bText, (xStart - 50, (heightCheck // 2) + 205)) # put text onto the screen
 
     # Sliders to control colors
-    rectWidth = 255 * 2
-    rRect = Rect(xStart, heightCheck // 2 + 50, rectWidth + 30, heightCheck // 30)
-    gRect = Rect(xStart, (heightCheck // 2) + 130, rectWidth + 30, heightCheck // 30)
-    bRect = Rect(xStart, (heightCheck // 2) + 210, rectWidth + 30, heightCheck // 30)
+    rectWidth = 255 * 2 # make width of sliders double the RGB size
+    rRect = Rect(xStart, heightCheck // 2 + 50, rectWidth + 30, heightCheck // 30) # create rectangle for the slider
+    gRect = Rect(xStart, (heightCheck // 2) + 130, rectWidth + 30, heightCheck // 30) # create rectangle for the slider
+    bRect = Rect(xStart, (heightCheck // 2) + 210, rectWidth + 30, heightCheck // 30) # create rectangle for the slider
 
-    pg.draw.rect(window, GREY, rRect)
-    pg.draw.rect(window, GREY, gRect)
-    pg.draw.rect(window, GREY, bRect)
+    pg.draw.rect(window, GREY, rRect) # put rectangle onto the screen
+    pg.draw.rect(window, GREY, gRect) # put rectangle onto the screen
+    pg.draw.rect(window, GREY, bRect) # put rectangle onto the screen
 
-    rSlide = Rect(rXPos, heightCheck // 2 + 50, 30, heightCheck // 30)
-    gSlide = Rect(gXPos, (heightCheck // 2) + 130, 30, heightCheck // 30)
-    bSlide = Rect(bXPos, (heightCheck // 2) + 210, 30, heightCheck // 30)
+    rSlide = Rect(rXPos, heightCheck // 2 + 50, 30, heightCheck // 30) # create slider moving object
+    gSlide = Rect(gXPos, (heightCheck // 2) + 130, 30, heightCheck // 30) # create slider moving object
+    bSlide = Rect(bXPos, (heightCheck // 2) + 210, 30, heightCheck // 30) # create slider moving object
 
     for event in events:
         if event.type == pg.MOUSEBUTTONDOWN:
-            if rSlide.collidepoint(event.pos):
-                rDrag = True
-            if gSlide.collidepoint(event.pos):
-                gDrag = True
-            if bSlide.collidepoint(event.pos):
-                bDrag = True
+            if rSlide.collidepoint(event.pos): # check if red moving slider has been changed
+                rDrag = True # make rDrag true
+            if gSlide.collidepoint(event.pos): # check if green moving slider has been changed
+                gDrag = True # make gDrag true
+            if bSlide.collidepoint(event.pos): # check if blue moving slider has been changed
+                bDrag = True # make bDrag true
         if event.type == pg.MOUSEBUTTONUP and (rDrag or gDrag or bDrag):
-            mousePos = pg.mouse.get_pos()
+            mousePos = pg.mouse.get_pos() # get mouse position
 
-            if mousePos[0] > rRect.right:
-                if rDrag:
-                    rXPos = rRect.right - 30
-                elif gDrag:
-                    gXPos = gRect.right - 30
-                elif bDrag:
+            if mousePos[0] > rRect.right: # if mouse has gone off the slider
+                if rDrag: # check if r moving slider has been touched
+                    rXPos = rRect.right - 30 # assign value of 255 to position of r slider
+                elif gDrag: # check if g moving slider has been touched
+                    gXPos = gRect.right - 30 # assign value of 255 to position of g slider
+                elif bDrag: # check if b moving slider has been touched
                     bXPos = bRect.right - 30
-            elif mousePos[0] < rRect.left:
-                if rDrag:
-                    rXPos = rRect.left
-                elif gDrag:
-                    gXPos = gRect.left
-                elif bDrag:
-                    bXPos = bRect.left
+            elif mousePos[0] < rRect.left: # check if moving slider is moved to before the slider
+                if rDrag: # check if r moving slider has been touched
+                    rXPos = rRect.left # assign value of 0 to position of b slider
+                elif gDrag: # check if g moving slider has been touched
+                    gXPos = gRect.left # assign value of 0 to position of b slider
+                elif bDrag: # check if b moving slider has been touched
+                    bXPos = bRect.left # assign value of 0 to position of b slider
             else:
-                if rDrag:
-                    rXPos = mousePos[0]
-                elif gDrag:
-                    gXPos = mousePos[0]
-                elif bDrag:
-                    bXPos = mousePos[0]
+                if rDrag: # check if r moving slider has been touched
+                    rXPos = mousePos[0] # assign value to position of r slider
+                elif gDrag: # check if g moving slider has been touched
+                    gXPos = mousePos[0] # assign value to position of g slider
+                elif bDrag: # check if b moving slider has been touched
+                    bXPos = mousePos[0] # assign value to position of b slider
 
             rDrag, gDrag, bDrag = False, False, False
 
-    pg.draw.rect(window, BLACK, rSlide)
-    pg.draw.rect(window, BLACK, gSlide)
-    pg.draw.rect(window, BLACK, bSlide)
+    pg.draw.rect(window, BLACK, rSlide) # put moving slider onto the screen
+    pg.draw.rect(window, BLACK, gSlide) # put moving slider onto the screen
+    pg.draw.rect(window, BLACK, bSlide) # put moving slider onto the screen
 
-    rCol = ((rSlide.x - rRect.left) // 2)
-    gCol = ((gSlide.x - gRect.left) // 2)
-    bCol = ((bSlide.x - bRect.left) // 2)
+    rCol = ((rSlide.x - rRect.left) // 2) # get RGB from slider
+    gCol = ((gSlide.x - gRect.left) // 2) # get RGB from slider
+    bCol = ((bSlide.x - bRect.left) // 2) # get RGB from slider
 
     # rectangle that shows current color
     currentColorRect = Rect((widthCheck // 3) + 50, 70, widthCheck // 5, heightCheck // 5)
