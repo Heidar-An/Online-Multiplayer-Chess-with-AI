@@ -440,7 +440,7 @@ def AIMinimax(positionCheck, alpha, beta, depth, maximise):
     # maximise is True when it's AI's turn
     if maximise: # check if you are maximising the game
         maxValue = 9999 # maximum value
-        evaluationCheck = getEvaluation(positionCheck, True, True) # get evaluation of page
+        evaluationCheck = getEvaluation(positionCheck, True, True) # get evaluation of board
     else:
         maxValue = -9999 # minimum value
         evaluationCheck = getEvaluation(positionCheck, False, True) # get evaluation of board
