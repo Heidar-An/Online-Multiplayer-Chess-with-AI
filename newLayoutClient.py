@@ -277,12 +277,12 @@ def AiDifficultyMenu():
     pg.draw.rect(window, BLACK, difficultTwoButton) # draw rectangle
     window.blit(difficultTwo, difficultTwoRect) # blit button onto screen
 
-    difficultThreeButton = pg.Rect(5 * (widthCheck / 8), 300, widthCheck / 4, 50)
-    difficultThree = mediumFont.render("Difficulty 3 - Hard", True, WHITE)
-    difficultThreeRect = difficultThree.get_rect()
-    difficultThreeRect.center = difficultThreeButton.center
-    pg.draw.rect(window, BLACK, difficultThreeButton)
-    window.blit(difficultThree, difficultThreeRect)
+    difficultThreeButton = pg.Rect(5 * (widthCheck / 8), 300, widthCheck / 4, 50) # create rectangle for button
+    difficultThree = mediumFont.render("Difficulty 3 - Hard", True, WHITE) # create text
+    difficultThreeRect = difficultThree.get_rect() # get rectangle 
+    difficultThreeRect.center = difficultThreeButton.center # get centre of button
+    pg.draw.rect(window, BLACK, difficultThreeButton) # draw rectangle
+    window.blit(difficultThree, difficultThreeRect) # blit button onto screen
 
     # button that allows user to go back to the main menu
     goBackButton = pg.Rect((widthCheck // 16), 100, widthCheck // 5, 50)
