@@ -750,15 +750,15 @@ def showTime():
                 playerTwoTime = 0 # dont let time be negative
                 timeText() # show who has won toonto screen
 
-    timeFont = pg.font.SysFont("Helvetica", 30)
+    timeFont = pg.font.SysFont("Helvetica", 30) # create font object
     # player 2
-    playerSentence = "Player 2"
-    textPlayer = timeFont.render(playerSentence, True, ORANGE)
-    window.blit(textPlayer, (display[0] - 120, display[1] // 8))
+    playerSentence = "Player 2" # create text sentence
+    textPlayer = timeFont.render(playerSentence, True, ORANGE) # create text object
+    window.blit(textPlayer, (display[0] - 120, display[1] // 8)) # blit text object onto screen
 
-    timeSentence = '{:02d}:{:02d}'.format(playerTwoMin, playerTwoSec)
-    textTime = timeFont.render(timeSentence, True, ORANGE)
-    window.blit(textTime, (display[0] - 120, display[1] // 8 + 50))
+    timeSentence = '{:02d}:{:02d}'.format(playerTwoMin, playerTwoSec) # show the time for player
+    textTime = timeFont.render(timeSentence, True, ORANGE) # create the text object
+    window.blit(textTime, (display[0] - 120, display[1] // 8 + 50)) # blit the text onto screen
 
     # player 1
     playerSentence = "Player 1"
