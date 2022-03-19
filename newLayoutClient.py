@@ -388,10 +388,10 @@ def againstOthersMenu():
     pg.draw.rect(window, BLACK, playOnlineButton) # draw rectangle
     window.blit(playOnline, playOnlineRect) # blit button onto screen
 
-    playLocalButton = pg.Rect(5 * (widthCheck / 8), (heightCheck / 3), widthCheck / 4, 50)
-    playLocal = mediumFont.render("Local Play", True, WHITE)
-    playLocalRect = playLocal.get_rect()
-    playLocalRect.center = playLocalButton.center
+    playLocalButton = pg.Rect(5 * (widthCheck / 8), (heightCheck / 3), widthCheck / 4, 50) # create rectangle 
+    playLocal = mediumFont.render("Local Play", True, WHITE) # create text
+    playLocalRect = playLocal.get_rect() # get rectangle object
+    playLocalRect.center = playLocalButton.center # 
     pg.draw.rect(window, BLACK, playLocalButton)
     window.blit(playLocal, playLocalRect)
 
