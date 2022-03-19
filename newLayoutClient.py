@@ -399,7 +399,7 @@ def againstOthersMenu():
     goBackButton = pg.Rect((widthCheck // 16), 100, widthCheck // 5, 50) # create rectangle
     goBack = mediumFont.render("Go Back", True, WHITE) # create text
     goBackRect = goBack.get_rect() # get rectangle object
-    goBackRect.center = goBackButton.center
+    goBackRect.center = goBackButton.center # get centre of button
     pg.draw.rect(window, BLACK, goBackButton)
     window.blit(goBack, goBackRect)
 
