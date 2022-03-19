@@ -466,14 +466,14 @@ def AIMinimax(positionCheck, alpha, beta, depth, maximise):
                                 positionCopy[i][j] = "" # make move to position
 
                                 # apply AB pruning
-                                if maximise:
+                                if maximise: # check if maximising
                                     if kingInCheck(positionCopy, False) is False:
                                         newEval = AIMinimax(positionCopy, alpha, beta, depth - 1, not maximise)
                                         maxValue = min(newEval, maxValue)
                                         beta = min(beta, maxValue)
                                         if beta <= alpha:
                                             return maxValue
-                                else:
+                                else: # or minimising
                                     if kingInCheck(positionCopy, True) is False:
                                         newEval = AIMinimax(positionCopy, alpha, beta, depth - 1, not maximise)
                                         maxValue = max(newEval, maxValue)
