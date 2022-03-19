@@ -583,13 +583,13 @@ def onlineCompareLists(currentBoardPosition):
     global onlinePreviousBoardPosition
     for i in range(8): # loop 8 times 
         for j in range(8): # loop 8 times
-            if onlinePreviousBoardPosition[i][j] == "":
+            if onlinePreviousBoardPosition[i][j] == "": # check if position is empty
                 if currentBoardPosition[i][j] == "":
                     continue
                 else:
                     return False
             else:
-                if currentBoardPosition[i][j] == "":
+                if currentBoardPosition[i][j] == "": 
                     # one board has a piece, the other doesn't, return false
                     return False
                 elif onlinePreviousBoardPosition[i][j].type == currentBoardPosition[i][j].type:
@@ -597,10 +597,10 @@ def onlineCompareLists(currentBoardPosition):
                     if onlinePreviousBoardPosition[i][j].colour == currentBoardPosition[i][j].colour:
                         continue
                     else:
-                        return False
+                        return False # lists are not the same
                 else:
-                    return False
-    return True
+                    return False # lists are not the same
+    return True # lists are the same
 
 
 def onlinePieceMoves(pieceY, pieceX, possibleMoves, boardPosition):
