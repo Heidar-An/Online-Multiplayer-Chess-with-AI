@@ -916,7 +916,8 @@ while True:
             if event.type == MOUSEBUTTONDOWN:
                 if placePiece:
                     if OnlineCheckPiece(pos) and OnlineCheckPlayerTurn(pos):
-
+                        # If the player pressed a piece before, and now presses on another piece
+                        # then show the moves for the new piece
                         updateChessScreen()
                         column, row = pos[0] // 70, (pos[1] - 110) // 70
                         onlinePossible = [["" for i in range(8)] for j in range(8)]
