@@ -350,7 +350,7 @@ def mainMenu():
 
     playTwoButton = pg.Rect(5 * (widthCheck / 8), (heightCheck / 2), widthCheck / 4, 50) # create rectangle 
     playTwo = mediumFont.render("Against others", True, BLACK) # create text
-    playTwoRect = playTwo.get_rect() # get rectangle
+    playTwoRect = playTwo.get_rect() # get rectangle object
     playTwoRect.center = playTwoButton.center # get centre of button
     pg.draw.rect(window, WHITE, playTwoButton) # draw rectangle onto screen
     window.blit(playTwo, playTwoRect) # blit button onto screen
