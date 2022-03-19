@@ -383,7 +383,7 @@ def againstOthersMenu():
     # Two Buttons
     playOnlineButton = pg.Rect((widthCheck / 8), (heightCheck / 3), widthCheck / 4, 50) # create rectangle
     playOnline = mediumFont.render("Online Play", True, WHITE) # create text
-    playOnlineRect = playOnline.get_rect() # get rectangle
+    playOnlineRect = playOnline.get_rect() # get rectangle object
     playOnlineRect.center = playOnlineButton.center # get centre of rectangle
     pg.draw.rect(window, BLACK, playOnlineButton) # draw rectangle
     window.blit(playOnline, playOnlineRect) # blit button onto screen
