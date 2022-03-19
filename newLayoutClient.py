@@ -462,8 +462,8 @@ def AIMinimax(positionCheck, alpha, beta, depth, maximise):
                             # go through moves that are possible
                             if possibleCopy[x][y] == "green": # check if move is possible 
                                 positionCopy = copy.deepcopy(positionCheck) # copy position
-                                positionCopy[x][y] = positionCheck[i][j]
-                                positionCopy[i][j] = ""
+                                positionCopy[x][y] = positionCheck[i][j] # make move to position
+                                positionCopy[i][j] = "" # make move to position
 
                                 # apply AB pruning
                                 if maximise:
