@@ -497,11 +497,11 @@ def mainAIFunction(positionCheck):
     for i in range(8): # loop 8 times
         for j in range(8): # loop 8 times
             if positionCheck[i][j] != "": # check if position is empty
-                if positionCheck[i][j].colour == "b":
-                    possibleCopy = [["" for i in range(8)] for j in range(8)]
+                if positionCheck[i][j].colour == "b": # check if the piece is black
+                    possibleCopy = [["" for i in range(8)] for j in range(8)] # create empty board
                     possibleCopy = pieceMoves(i, j, possibleCopy, positionCheck)  # changed this line
-                    if not any("green" in row for row in possibleCopy):
-                        continue
+                    if not any("green" in row for row in possibleCopy): # check if there is green
+                        continue # if there are no possible moves, skip the loop
 
                     for x in range(8):
                         for y in range(8):
