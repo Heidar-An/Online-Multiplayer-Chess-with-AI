@@ -357,11 +357,11 @@ def mainMenu():
     pg.display.update() # update screen
 
     # if the mouse clicks button then assign what menu to go to
-    click, _, _ = pg.mouse.get_pressed()
-    if click == 1:
-        mouse = pg.mouse.get_pos()
-        if playTwoButton.collidepoint(mouse):
-            playerMode = True
+    click, _, _ = pg.mouse.get_pressed() # check if the mouse has been clicked
+    if click == 1: # check if the left mouse button has been clicked
+        mouse = pg.mouse.get_pos() # get position of mouse
+        if playTwoButton.collidepoint(mouse): # check if button has been clicked
+            playerMode = True # 
             pg.display.update()
         elif playAIButton.collidepoint(mouse):
             AiDifficulty = True
