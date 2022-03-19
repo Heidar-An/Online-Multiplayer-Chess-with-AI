@@ -511,10 +511,10 @@ def mainAIFunction(positionCheck):
                                 positionCopy[i][j] = "" # make move
                                 if kingInCheck(positionCopy, False) is False:
                                     newEval = AIMinimax(positionCopy, -10000, 10000, AiDepth, False)
-                                    if newEval <= evaluation:
-                                        evaluation = newEval
-                                        rowMove, columnMove = x, y
-                                        previousRow, previousColumn = i, j
+                                    if newEval <= evaluation: # check if new evaluation is lower
+                                        evaluation = newEval # assign new eval
+                                        rowMove, columnMove = x, y # set row and column to position
+                                        previousRow, previousColumn = i, j # set previous row and column to position
 
     row, column = previousRow, previousColumn
     movePiece(columnMove, rowMove)
