@@ -83,20 +83,20 @@ class Bishop: # class for bishop
             columnTemp -= 1
             if check(row, columnTemp):
                 if boardPosition[i][columnTemp] == "":
-                    possibleMoves[i][columnTemp] = "green"
+                    possibleMoves[i][columnTemp] = "green" # bishop can move here
                 elif boardPosition[i][columnTemp].colour != self.colour:
-                    boardPosition[i][columnTemp].killable = True
-                    possibleMoves[i][columnTemp] = "green"
+                    possibleMoves[i][columnTemp] = "green" # bishop can move here
                     break
                 else:
                     break
-        return possibleMoves
+        return possibleMoves # return where the bishop can move
 
 
 class Pawn:
     def __init__(self, colour):
         self.colour = colour
         self.type = "p"
+        # different attributes for different colours
         if colour == "w":
             self.image = "wp.svg"
             self.value = 10
