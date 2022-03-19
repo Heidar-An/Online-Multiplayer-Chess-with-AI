@@ -445,7 +445,7 @@ def AIMinimax(positionCheck, alpha, beta, depth, maximise):
         maxValue = -9999 # minimum value
         evaluationCheck = getEvaluation(positionCheck, False, True) # get evaluation of board
     if evaluationCheck >= 900 or evaluationCheck <= -900 or depth == 0:
-        return evaluationCheck
+        return evaluationCheck # return evaluation
 
     # search through all possible moves, and find what the best move is
     for i in range(8):
