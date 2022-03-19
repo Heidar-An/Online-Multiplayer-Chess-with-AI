@@ -679,8 +679,8 @@ def OnlineGetPossible():
 def OnlineGetBoard():
     """Get the current board object"""
     global networkClient
-    currentBoard = networkClient.receiveBoard() 
-    return currentBoard
+    currentBoard = networkClient.receiveBoard() # get current board object
+    return currentBoard # return board object
 
 
 def OnlineGetBoardPosition():
