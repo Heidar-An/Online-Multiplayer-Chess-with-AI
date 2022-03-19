@@ -614,9 +614,9 @@ def OnlineCheckPiece(mousePos):
     global onlineBoardPosition
     columnPiece, rowPiece = mousePos
     # convert the mouse position into the new format of the chess screen
-    columnPiece, rowPiece = columnPiece // 70, (rowPiece - 110) // 70
-    onlineBoardPosition = networkClient.getCurrentBoardPosition()
-    if onlineBoardPosition[rowPiece][columnPiece] == "":
+    columnPiece, rowPiece = columnPiece // 70, (rowPiece - 110) // 70 # get the row and column of mouse
+    onlineBoardPosition = networkClient.getCurrentBoardPosition() # get current board
+    if onlineBoardPosition[rowPiece][columnPiece] == "": # check if position is empty
         return False
     return True
 
@@ -624,8 +624,8 @@ def OnlineCheckPiece(mousePos):
 def OnlineCheckPlayerTurn(mousePos):
     """Get if the player can move piece"""
     global onlineBoardPosition, onlineColourId
-    columnPiece, rowPiece = mousePos
-    columnPiece, rowPiece = columnPiece // 70, (rowPiece - 110) // 70
+    columnPiece, rowPiece = mousePos # seperate tuple
+    columnPiece, rowPiece = columnPiece // 70, (rowPiece - 110) // 70 # get row and column
 
     colour = onlineBoardPosition[rowPiece][columnPiece].colour
     # print(colour, onlinePlayerOneTurn, onlineColourId)
