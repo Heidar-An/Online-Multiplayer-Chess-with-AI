@@ -343,7 +343,7 @@ def mainMenu():
     # Two buttons, against AI, or against others
     playAIButton = pg.Rect((widthCheck / 8), (heightCheck / 2), widthCheck / 4, 50) # create rectangle
     playAI = mediumFont.render("Against AI", True, BLACK) # create text
-    playAIRect = playAI.get_rect() # get rectangle 
+    playAIRect = playAI.get_rect() # get rectangle object
     playAIRect.center = playAIButton.center # get center 
     pg.draw.rect(window, WHITE, playAIButton) # draw rectangle onto screen
     window.blit(playAI, playAIRect) # blit button onto screen
