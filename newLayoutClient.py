@@ -414,8 +414,8 @@ def againstOthersMenu():
 
             networkClient = Client() # create client object
             onlineColourId = networkClient.colourId # get colour of user
-            onlinePreviousBoardPosition = networkClient.chessBoard.board
-            if onlineColourId == "b":
+            onlinePreviousBoardPosition = networkClient.chessBoard.board # get board object
+            if onlineColourId == "b": # 
                 networkClient.chessBoard.otherPlayer = True
             else:
                 onlineCheckForOtherPlayer()
