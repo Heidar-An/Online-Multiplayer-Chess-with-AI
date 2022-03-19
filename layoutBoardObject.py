@@ -22,7 +22,7 @@ class Board:
         self.possible = [["" for i in range(8)] for j in range(8)]
         self.playerOneTurn = True
         self.otherPlayer = False
-        position = [
+        self.board = [
             [br, bn, bb, bq, bk, bb, bn, br],
             [bp, bp, bp, bp, bp, bp, bp, bp],
             ["", "", "", "", "", "", "", ""],
@@ -32,9 +32,6 @@ class Board:
             [wp, wp, wp, wp, wp, wp, wp, wp],
             [wr, wn, wb, wq, wk, wb, wn, wr]
         ]
-        for i in range(8):
-            for j in range(8):
-                self.board[i][j] = position[i][j]
 
     def movePossible(self, mousePos, oldPieceX, oldPieceY):
         """Check if move is allowed"""

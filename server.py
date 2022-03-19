@@ -14,7 +14,7 @@ totalConn = 0
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-# Found in TechWithTim game tutorial
+
 try:
     server.bind(ADDRESS)
 except socket.error:
@@ -43,7 +43,7 @@ def handle_client(conn, address, chessGame, gameNumber):
     connected = True
 
     while connected:
-        d = conn.recv(1024)
+        d = conn.recv(942)
         try:
             data = d.decode("utf-8")
         except UnicodeDecodeError:

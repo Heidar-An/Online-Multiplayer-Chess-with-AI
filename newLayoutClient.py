@@ -53,9 +53,9 @@ mediumFont = pg.font.SysFont("Helvetica", 28) # create a global font variable
 def updateChessScreen():
     """used to create the chessboard and call updateImages"""
     window.fill(BLACK) # background of screen has to be black
-    for j in range(8):
-        for i in range(8):
-            if (i + j) % 2 == 0:
+    for j in range(8): # loop 8 times
+        for i in range(8): # loop 8 times
+            if (i + j) % 2 == 0: # check if even number
                 rectangle = pg.Rect(i * 70, j * 70 + 110, 70, 70) # display 70 by 70 squares in this specific location
                 pg.draw.rect(window, BoardColour, rectangle) # draw rectangle here
             else:
@@ -70,12 +70,12 @@ def updateChessScreen():
 def updateImages():
     """used to add images to the chessboard"""
     currentBoard = chessBoard.board # assign what the chessboard is
-    if networkClient is not None:
+    if networkClient is not None: # check if there is an online mode
         currentBoard = networkClient.chessBoard.board # if there is an online game, change what the chessboard is
-    for i in range(8):
-        for j in range(8):
+    for i in range(8): # loop 8 times
+        for j in range(8): # loop 8 times
             if currentBoard[j][i] != "":
-                img = pg.image.load(currentBoard[j][i].image).convert_alpha()
+                img = pg.image.load(currentBoard[j][i].image).convert_alpha() # load the images in
                 img = pg.transform.smoothscale(img, (68, 68)) # images are size 68 by 68, so this is native size
                 window.blit(img, (i * 70, j * 70 + 110)) # display image on the correct location
 
@@ -84,65 +84,65 @@ def getEvaluation(positionCheck, condition, fakePosition):
     """get the value of the board by adding up values of pieces"""
     # condition = True if AIs turn / Not Player One Turn
     # fakePosition is whether this is for the real position, or one that the AI is checking
-    return chessBoard.getEval(positionCheck, condition, fakePosition)
+    return chessBoard.getEval(positionCheck, condition, fakePosition) # get evaluation
 
 
 def checkPiece(mousePos):
     """checks whether there is a piece where the mouse is clicking"""
-    return chessBoard.checkPieceExists(mousePos)
+    return chessBoard.checkPieceExists(mousePos) # check if a piece exists
 
 
 def check(checkRow, checkColumn):
     """checks if this row and column is valid, used when looking at possible piece movement"""
-    if 0 <= checkRow <= 7 and 0 <= checkColumn <= 7:
-        return True
-    return False
+    if 0 <= checkRow <= 7 and 0 <= checkColumn <= 7: # check if the piece is in the board
+        return True # return true
+    return False # return false
 
 
 def checkmate(boardPosition, playerOneTurn, test):
     """checks if there is a checkmate"""
     global checkmateCondition
 
-    if chessBoard.checkmateCheck(boardPosition, playerOneTurn):
+    if chessBoard.checkmateCheck(boardPosition, playerOneTurn): # check for checkmate
         if test is False:
-            checkmateCondition = True
-        return True
-    return False
+            checkmateCondition = True # set condition to true
+        return True # return true
+    return False # return false
 
 
 def moves(possibleMoves):
     """shows all the possible moves available"""
     updateChessScreen() # call this function first to show the position of pieces
-    for i in range(8):
-        for j in range(8):
-            if possibleMoves[i][j] != "":
+    for i in range(8): # loop 8 times
+        for j in range(8): # loop 8 times
+            if possibleMoves[i][j] != "": # check
                 pg.draw.circle(window, GREEN, (j * 70 + 35, i * 70 + 110 + 35), 7) # display green circle
     pg.display.update() # update the screen for the player to see
 
 
 def findKing(boardPosition):
     """finds the position of the king"""
-    return chessBoard.findKingPos(boardPosition, chessBoard.playerOneTurn)
+    return chessBoard.findKingPos(boardPosition, chessBoard.playerOneTurn) # find the position of the king
 
 
 def kingInCheck(boardPosition, playerOneTurn):
     """check if king is in check"""
-    return chessBoard.kingInCheck(boardPosition, playerOneTurn)
+    return chessBoard.kingInCheck(boardPosition, playerOneTurn) # check if the king is in check
 
 
 def moveEndCheck(newColumn, newRow, boardPosition, playerOneTurn):
     """checks if move sent to function would remove check, false means that the king won't be in check"""
-    return chessBoard.moveEndCheck(newColumn, newRow, row, column, boardPosition, playerOneTurn)
+    return chessBoard.moveEndCheck(newColumn, newRow, row, column, boardPosition, playerOneTurn) # check if the move sent would mean the position is still in check
 
 
 def moveEndCheckPosition(newColumn, newRow, oldColumn, oldRow, boardPosition, playerOneTurn):
     """checks if move sent to function would remove check used for checkmate function, false means that the king
     won't be in check """
-    return chessBoard.moveEndCheck(newColumn, newRow, oldRow, oldColumn, boardPosition, playerOneTurn)
+    return chessBoard.moveEndCheck(newColumn, newRow, oldRow, oldColumn, boardPosition, playerOneTurn) # check if the move sent would mean the position is still in check
 
 def pieceMoves(pieceY, pieceX, possibleMoves, boardPosition):
     """each piece will have different possible moves, this calls the correct one"""
-    return chessBoard.board[pieceY][pieceX].possibleMoves(pieceY, pieceX, possibleMoves, boardPosition)
+    return chessBoard.board[pieceY][pieceX].possibleMoves(pieceY, pieceX, possibleMoves, boardPosition) # get the possible moves for a specific piece
 
 
 def changeColorMenu(events):
@@ -228,28 +228,28 @@ def changeColorMenu(events):
     bCol = ((bSlide.x - bRect.left) // 2) # get RGB from slider
 
     # rectangle that shows current color
-    currentColorRect = Rect((widthCheck // 3) + 50, 70, widthCheck // 5, heightCheck // 5)
-    currCol = (rCol, gCol, bCol)
-    pg.draw.rect(window, currCol, currentColorRect)
+    currentColorRect = Rect((widthCheck // 3) + 50, 70, widthCheck // 5, heightCheck // 5) # get current colour from rect
+    currCol = (rCol, gCol, bCol) # get the colour by the sliders
+    pg.draw.rect(window, currCol, currentColorRect) # draw a rectangle that shows the current colour
 
     # button that allows user to go back to the main menu
-    goBackButton = pg.Rect((widthCheck // 16), 150, widthCheck // 5, 50)
-    goBack = mediumFont.render("Go Back", True, WHITE)
-    goBackRect = goBack.get_rect()
+    goBackButton = pg.Rect((widthCheck // 16), 150, widthCheck // 5, 50) # create button for going back
+    goBack = mediumFont.render("Go Back", True, WHITE) # create the text
+    goBackRect = goBack.get_rect() # get the rectangle
     goBackRect.center = goBackButton.center
-    pg.draw.rect(window, BLACK, goBackButton)
-    window.blit(goBack, goBackRect)
+    pg.draw.rect(window, BLACK, goBackButton) # create the rectangle
+    window.blit(goBack, goBackRect) # blit the button onto the screen
 
     click, _, _ = pg.mouse.get_pressed()
-    if click == 1:
-        mouse = pg.mouse.get_pos()
-        if goBackButton.collidepoint(mouse):
-            BoardColour = (rCol, gCol, bCol)
-            changeColor = False
+    if click == 1: # check if the left click button is being pressed
+        mouse = pg.mouse.get_pos() # get the mouse position
+        if goBackButton.collidepoint(mouse): # check if the go back button has been hit
+            BoardColour = (rCol, gCol, bCol) # get the current colour
+            changeColor = False # go back to main menu
             time.sleep(0.6)
-            pg.display.update()
+            pg.display.update() # update screen
 
-    pg.display.update()
+    pg.display.update() # update screen
 
 
 def AiDifficultyMenu():
@@ -871,13 +871,13 @@ while True:
             checkBoardPosition = networkClient.getCurrentBoardPosition()
             # get current board position from server, compare this to position from the previous frame,
             # keep doing until a different chess board position is reached
-            if onlineCompareLists(checkBoardPosition) is False:
+            if onlinePreviousBoardPosition != checkBoardPosition:
                 # print("Other player has made his move")
                 onlinePlayerOneTurn = not onlinePlayerOneTurn
                 networkClient.setSelfBoard()
                 updateChessScreen()
         else:
-            seconds += 3
+            seconds += 1
     else:
         if timeSeconds >= 30:
             showTime()
