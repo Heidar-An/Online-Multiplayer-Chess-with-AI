@@ -733,22 +733,22 @@ def showTime():
     # every second, remove a second from the player's time
     currTime = time.time()
     if currTime - previousTime >= 1:
-        previousTime = currTime
+        previousTime = currTime # make previous time, the current time
         playerTurn = chessBoard.playerOneTurn
         if onlinePlayer:
             playerTurn = onlinePlayerOneTurn
         if playerTurn:
-            playerOneTime -= 1
-            playerOneMin, playerOneSec = divmod(playerOneTime, 60)
-            if playerOneTime <= 0:
-                playerOneTime = 0
-                timeText()
+            playerOneTime -= 1 # minus a second
+            playerOneMin, playerOneSec = divmod(playerOneTime, 60) # get the minutes and seconds
+            if playerOneTime <= 0: 
+                playerOneTime = 0 # dont let time be negative
+                timeText() # show who has won onto screen
         else:
-            playerTwoTime -= 1
-            playerTwoMin, playerTwoSec = divmod(playerTwoTime, 60)
-            if playerTwoTime <= 0:
-                playerTwoTime = 0
-                timeText()
+            playerTwoTime -= 1 # minus a second
+            playerTwoMin, playerTwoSec = divmod(playerTwoTime, 60) # get the minutes and seconds
+            if playerTwoTime <= 0: 
+                playerTwoTime = 0 # dont let time be negative
+                timeText() # show who has won toonto screen
 
     timeFont = pg.font.SysFont("Helvetica", 30)
     # player 2
