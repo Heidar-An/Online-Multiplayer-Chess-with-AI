@@ -324,13 +324,13 @@ def AiDifficultyMenu():
 def mainMenu():
     """Main Menu Function"""
     global changeColor, twoPlayer, AIPlayer, AiDifficulty, playerMode
-    window.fill(BLACK)
-    widthCheck = display[0]
-    heightCheck = display[1]
+    window.fill(BLACK) # make screen black
+    widthCheck = display[0] # get width
+    heightCheck = display[1] # get height
 
     # Title of the program
-    chessTitle = mediumFont.render("Chess With Me", True, RED)
-    window.blit(chessTitle, (widthCheck // 3 + 40, 20))
+    chessTitle = mediumFont.render("Chess With Me", True, RED) # create text
+    window.blit(chessTitle, (widthCheck // 3 + 40, 20)) # blit text onto screen
 
     # button to select color of board
     changeColButton = pg.Rect((widthCheck // 16), 50, widthCheck // 5, 50)
