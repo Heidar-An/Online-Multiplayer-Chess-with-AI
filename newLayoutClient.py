@@ -793,7 +793,7 @@ def mouseMovementForOthers():
     """Mouse movement for playing against others"""
     global column, row, placePiece
     # check if mouse is in same position as when mouse was pushed down
-    pos = mouse.get_pos()
+    pos = mouse.get_pos() # get mouse position
 
     if (pos[0] // 70) == column and ((pos[1] - 110) // 70) == row:
         return "c"
@@ -849,35 +849,35 @@ chessBoard.playerOneTurn = True
 placePiece = False
 while True:
     clock.tick(60)
-    eventList = pg.event.get()
+    eventList = pg.event.get() # get what the player has done
     if AiDifficulty:
-        AiDifficultyMenu()
+        AiDifficultyMenu() # display AI menu
     elif changeColor:
-        changeColorMenu(eventList)
+        changeColorMenu(eventList) # show the colour picker
     elif playerMode:
-        againstOthersMenu()
+        againstOthersMenu() # show the against others menu
     elif AIPlayer and chessBoard.playerOneTurn is False and checkmateCondition is False:
         pass
     elif twoPlayer is False and AIPlayer is False and changeColor is False and onlinePlayer is False:
         # display the main menu for the player
-        mainMenu()
+        mainMenu() # show the main menu
     elif (onlineColourId == "b" and onlinePlayerOneTurn) \
             or (onlineColourId == "w" and onlinePlayerOneTurn is False):
         if timeSeconds >= 30:
-            showTime()
+            showTime() # show the time of the player
             timeSeconds = 0
         else:
             timeSeconds += 1
         if seconds == 60:
             seconds = 0
-            checkBoardPosition = networkClient.getCurrentBoardPosition()
+            checkBoardPosition = networkClient.getCurrentBoardPosition() # get current position from server
             # get current board position from server, compare this to position from the previous frame,
             # keep doing until a different chess board position is reached
             if onlinePreviousBoardPosition != checkBoardPosition:
                 # print("Other player has made his move")
                 onlinePlayerOneTurn = not onlinePlayerOneTurn
                 networkClient.setSelfBoard()
-                updateChessScreen()
+                updateChessScreen() # update the board and pieces
         else:
             seconds += 1
     else:
@@ -891,8 +891,8 @@ while True:
         if event.type == QUIT:
             if networkClient is not None:
                 networkClient.lostConnection()
-            pg.quit()
-            break
+            pg.quit() # exit program
+            break # end program
         elif AiDifficulty or changeColor or playerMode:
             break
         elif checkmateCondition:
@@ -901,11 +901,13 @@ while True:
             # clicking functions is the same as for normal play. Comments for how it works are shown there.
             if onlineOtherPlayerTurn():
                 break
+            # check if mouse is in same position as when mouse was pushed down
             pos = mouse.get_pos()
             if (pos[0] // 70) == column and ((pos[1] - 110) // 70) == row:
                 continue
 
             if event.type == MOUSEBUTTONUP:
+                # previously selected piece, now placing it
                 if placePiece:
                     onlineMoveFunction()
                     placePiece = False
@@ -924,6 +926,9 @@ while True:
                         OnlineSendPossible(onlinePossible)
                         moves(onlinePossible)
                     else:
+                        # else if the new position is not another piece, then go the move function
+                        # place piece is made false in case they press a square that wasn't a move,
+                        # they are forced to press the piece again
                         columnCheck, rowCheck = pos[0] // 70, (pos[1] - 110) // 70
                         if OnlineCheckPiece(pos) is False and onlinePossible[rowCheck][columnCheck] == "":
                             onlinePossible = [["" for i in range(8)] for j in range(8)]
