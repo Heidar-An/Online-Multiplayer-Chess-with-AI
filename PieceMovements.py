@@ -1,13 +1,15 @@
 def check(row, column):
+    """Check if position is valid"""
     if 0 <= row <= 7 and 0 <= column <= 7:
         return True
     return False
 
 
-class Bishop:
+class Bishop: # class for bishop 
     def __init__(self, colour):
         self.colour = colour
         self.type = "b"
+        # different attributes for different colours
         if colour == "w":
             self.image = "wb.svg"
             self.value = 30
@@ -17,6 +19,7 @@ class Bishop:
 
     def eval(self, i, j, AiTurn):
         """Get the evaluation of the piece at a certain position"""
+        # used for AI, get the evaluation at different positions
         evalList = [
             [-2.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -2.0],
             [-1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0],
@@ -28,9 +31,9 @@ class Bishop:
             [-2.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -2.0]
         ]
         if AiTurn:
-            evalList.reverse()
-        evaluation = evalList[i][j]
-        return evaluation
+            evalList.reverse() # reverse it if it is the other player's turn
+        evaluation = evalList[i][j] # get evaluation
+        return evaluation # return
 
     def possibleMoves(self, row, column, possibleMoves, boardPosition):
         """find all possible bishop moves at a certain position"""
@@ -43,8 +46,7 @@ class Bishop:
                 if boardPosition[i][columnTemp] == "":
                     possibleMoves[i][columnTemp] = "green"
                 elif boardPosition[i][columnTemp].colour != self.colour:
-                    boardPosition[i][columnTemp].killable = True
-                    possibleMoves[i][columnTemp] = "green"
+                    possibleMoves[i][columnTemp] = "green" # make position green
                     break
                 else:
                     break
@@ -57,8 +59,7 @@ class Bishop:
                 if boardPosition[i][columnTemp] == "":
                     possibleMoves[i][columnTemp] = "green"
                 elif boardPosition[i][columnTemp].colour != self.colour:
-                    boardPosition[i][columnTemp].killable = True
-                    possibleMoves[i][columnTemp] = "green"
+                    possibleMoves[i][columnTemp] = "green" # make position green
                     break
                 else:
                     break
