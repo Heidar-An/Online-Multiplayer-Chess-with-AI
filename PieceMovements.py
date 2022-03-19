@@ -195,9 +195,9 @@ class Knight:
                 if i ** 2 + j ** 2 == 5:
                     if check(row + i, column + j):
                         if boardPosition[row + i][column + j] == "":
-                            possibleMoves[row + i][column + j] = "green"
+                            possibleMoves[row + i][column + j] = "green" # knight can move here
                         elif boardPosition[row + i][column + j].colour != self.colour:
-                            possibleMoves[row + i][column + j] = "green"
+                            possibleMoves[row + i][column + j] = "green" # knight can move here
         return possibleMoves
 
 
@@ -206,6 +206,7 @@ class Rook:
         self.colour = colour
         self.type = "r"
         self.moved = False
+        # different attributes for different colours
         if colour == "w":
             self.image = "wr.svg"
             self.value = 50
@@ -227,9 +228,9 @@ class Rook:
             [0.0, 0.0, 0.0, 0.5, 0.5, 0.0, 0.0, 0.0]
         ]
         if AiTurn:
-            evalList.reverse()
-        evaluation = evalList[i][j]
-        return evaluation
+            evalList.reverse() # reverse it if it is the other player's turn 
+        evaluation = evalList[i][j] # get eval
+        return evaluation # return eval
 
     def possibleMoves(self, row, column, possibleMoves, boardPosition):
         """return all possible rook moves"""
