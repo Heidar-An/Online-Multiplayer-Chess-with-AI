@@ -942,7 +942,7 @@ while True:
                             onlineMoveFunction()
                             placePiece = False
                 else:
-
+                    # selecting a piece
                     onlinePossible = [["" for i in range(8)] for j in range(8)]
                     column, row = pos[0] // 70, (pos[1] - 110) // 70
 
