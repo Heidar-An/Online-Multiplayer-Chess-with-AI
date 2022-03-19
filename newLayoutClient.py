@@ -333,20 +333,20 @@ def mainMenu():
     window.blit(chessTitle, (widthCheck // 3 + 40, 20)) # blit text onto screen
 
     # button to select color of board
-    changeColButton = pg.Rect((widthCheck // 16), 50, widthCheck // 5, 50)
-    changeCol = mediumFont.render("Change Color", True, BLACK)
-    changeColRect = changeCol.get_rect()
-    changeColRect.center = changeColButton.center
-    pg.draw.rect(window, TURQUOISE, changeColButton)
-    window.blit(changeCol, changeColRect)
+    changeColButton = pg.Rect((widthCheck // 16), 50, widthCheck // 5, 50) # create rectangle
+    changeCol = mediumFont.render("Change Color", True, BLACK) # create text
+    changeColRect = changeCol.get_rect() # get rectangle
+    changeColRect.center = changeColButton.center # get center of button
+    pg.draw.rect(window, TURQUOISE, changeColButton) # draw rectangle 
+    window.blit(changeCol, changeColRect) # blit button onto rectangle
 
     # Two buttons, against AI, or against others
-    playAIButton = pg.Rect((widthCheck / 8), (heightCheck / 2), widthCheck / 4, 50)
-    playAI = mediumFont.render("Against AI", True, BLACK)
-    playAIRect = playAI.get_rect()
-    playAIRect.center = playAIButton.center
-    pg.draw.rect(window, WHITE, playAIButton)
-    window.blit(playAI, playAIRect)
+    playAIButton = pg.Rect((widthCheck / 8), (heightCheck / 2), widthCheck / 4, 50) # create rectangle
+    playAI = mediumFont.render("Against AI", True, BLACK) # create text
+    playAIRect = playAI.get_rect() # get rectangle 
+    playAIRect.center = playAIButton.center # get center 
+    pg.draw.rect(window, WHITE, playAIButton) # draw rectangle onto screen
+    window.blit(playAI, playAIRect) # blit button onto screen
 
     playTwoButton = pg.Rect(5 * (widthCheck / 8), (heightCheck / 2), widthCheck / 4, 50)
     playTwo = mediumFont.render("Against others", True, BLACK)
