@@ -494,9 +494,9 @@ def mainAIFunction(positionCheck):
         return 0 # check if it is checkmate or the other player's turn
 
     # search through every move and send each to AI minimax
-    for i in range(8):
-        for j in range(8):
-            if positionCheck[i][j] != "":
+    for i in range(8): # loop 8 times
+        for j in range(8): # loop 8 times
+            if positionCheck[i][j] != "": # check if position is empty
                 if positionCheck[i][j].colour == "b":
                     possibleCopy = [["" for i in range(8)] for j in range(8)]
                     possibleCopy = pieceMoves(i, j, possibleCopy, positionCheck)  # changed this line
