@@ -761,15 +761,15 @@ def showTime():
     window.blit(textTime, (display[0] - 120, display[1] // 8 + 50)) # blit the text onto screen
 
     # player 1
-    playerSentence = "Player 1"
-    textPlayer = timeFont.render(playerSentence, True, ORANGE)
-    window.blit(textPlayer, (display[0] - 120, display[1] - 200))
+    playerSentence = "Player 1" # text sentence
+    textPlayer = timeFont.render(playerSentence, True, ORANGE) # create the text object
+    window.blit(textPlayer, (display[0] - 120, display[1] - 200)) # blit the text onto screen
 
-    timeSentence = '{:02d}:{:02d}'.format(playerOneMin, playerOneSec)
-    textTime = timeFont.render(timeSentence, True, ORANGE)
-    window.blit(textTime, (display[0] - 120, display[1] - 200 + 50))
-
-    pg.display.update()
+    timeSentence = '{:02d}:{:02d}'.format(playerOneMin, playerOneSec) 
+    textTime = timeFont.render(timeSentence, True, ORANGE) # create the text object
+    window.blit(textTime, (display[0] - 120, display[1] - 200 + 50)) # blit the text onto screen
+ 
+    pg.display.update() # update screen
 
 
 def timeText():
