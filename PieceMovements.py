@@ -183,9 +183,9 @@ class Knight:
             [-5.0, -4.0, -3.0, -3.0, -3.0, -3.0, -4.0, -5.0]
         ]
         if AiTurn:
-            evalList.reverse()
-        evaluation = evalList[i][j]
-        return evaluation
+            evalList.reverse() # reverse it if it is the other player's turn 
+        evaluation = evalList[i][j] # get eval
+        return evaluation # return eval
 
     def possibleMoves(self, row, column, possibleMoves, boardPosition):
         """return all possible knight moves"""
