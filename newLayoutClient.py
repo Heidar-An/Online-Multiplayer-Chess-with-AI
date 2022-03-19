@@ -318,7 +318,7 @@ def AiDifficultyMenu():
             AiDifficulty = False # exit menu
             pg.display.update() # update screen
 
-    pg.display.update()
+    pg.display.update() # update screen
 
 
 def mainMenu():
