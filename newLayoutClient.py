@@ -300,19 +300,19 @@ def AiDifficultyMenu():
             AIPlayer = True # start AI game
             AiDifficulty = False # exit menu
             AiDepth = 1 # set depth to 1
-            updateChessScreen()
+            updateChessScreen() # update the chess screen
             pg.display.update() # update screen
         elif difficultTwoButton.collidepoint(mouse): # check if button has been pressed
             AIPlayer = True # start AI game
             AiDifficulty = False # exit menu
             AiDepth = 2 # set depth to 2
-            updateChessScreen()
+            updateChessScreen() # update the chess screen
             pg.display.update() # update screen
         elif difficultThreeButton.collidepoint(mouse): # check if button has been pressed
             AIPlayer = True # start AI game
             AiDifficulty = False # exit menu
             AiDepth = 3 # set depth to 3
-            updateChessScreen()
+            updateChessScreen() # update the chess screen
             pg.display.update() # update screen
         elif goBackButton.collidepoint(mouse): # check if button has been pressed
             AiDifficulty = False # exit menu
