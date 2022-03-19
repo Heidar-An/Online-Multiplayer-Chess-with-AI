@@ -534,27 +534,27 @@ def movePiece(moveX, moveY):
 def mainMoveFunction():
     """Move function for playing against others on the same computer and AI"""
     global newPos, playerMove, newX, newY, row, column, AIPlayer
-    mousePos = pg.mouse.get_pos()
-    newX, newY = mousePos
-    newX, newY = newX // 70, (newY - 110) // 70
+    mousePos = pg.mouse.get_pos() # get mouse pos
+    newX, newY = mousePos # seperate tuple
+    newX, newY = newX // 70, (newY - 110) // 70 # get row and column
 
     playerMove = chessBoard.movePossible(mousePos, column, row)
     if playerMove is True:
-        playerMove = False
+        playerMove = False # make move false
         if AIPlayer:
             chessBoard.playerOneTurn = False
 
         # check if checkmate after game function so text can be blitzed onto screen
-        updateChessScreen()
-        checkmateCheck(chessBoard.playerOneTurn)
+        updateChessScreen() # update the entire screen
+        checkmateCheck(chessBoard.playerOneTurn) # check for checkmate
 
 def waitingForOtherPlayer():
     """
     This function is responsible for displaying text
     showing the user is waiting for another player
     """
-    font = pg.font.SysFont("Helvetica", 60)
-    textPrint = "Waiting for another player..."
+    font = pg.font.SysFont("Helvetica", 60) # create text
+    textPrint = "Waiting for another player..." # sentence
     text = font.render(textPrint, True, TURQUOISE)
     window.blit(text, (display[0] // 8, 0))
     pg.display.update()
