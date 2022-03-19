@@ -638,7 +638,7 @@ def OnlineCheckPlayerTurn(mousePos):
 def createNetworkClient():
     """Make client connect to the server"""
     global networkClient
-    networkClient = Client()
+    networkClient = Client() # create global client object
 
 
 def onlineMoveFunction():
