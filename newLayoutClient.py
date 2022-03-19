@@ -491,7 +491,7 @@ def mainAIFunction(positionCheck):
     rowMove, columnMove = -1, -1 # set current row and column to values not possible
     previousRow, previousColumn = 0, 0 # set previous row and column to  0 0 
     if checkmateCondition or chessBoard.playerOneTurn is True:
-        return 0
+        return 0 # check if it is checkmate or the other player's turn
 
     # search through every move and send each to AI minimax
     for i in range(8):
