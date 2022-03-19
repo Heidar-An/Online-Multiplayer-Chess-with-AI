@@ -487,8 +487,8 @@ def AIMinimax(positionCheck, alpha, beta, depth, maximise):
 def mainAIFunction(positionCheck):
     """Check each move possible for the AI and make the best move"""
     global row, column, newY, newX, AiDepth, checkmateCondition
-    evaluation = 10000
-    rowMove, columnMove = -1, -1
+    evaluation = 10000 # eval = 10000
+    rowMove, columnMove = -1, -1 # set current row and column to values not possible
     previousRow, previousColumn = 0, 0
     if checkmateCondition or chessBoard.playerOneTurn is True:
         return 0
