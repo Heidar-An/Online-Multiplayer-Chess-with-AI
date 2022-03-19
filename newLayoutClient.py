@@ -631,8 +631,8 @@ def OnlineCheckPlayerTurn(mousePos):
     # print(colour, onlinePlayerOneTurn, onlineColourId)
     if (colour == "w" and onlinePlayerOneTurn and onlineColourId == "w") \
             or (colour == "b" and onlinePlayerOneTurn is False and onlineColourId == "b"):
-        return True # 
-    return False
+        return True # player can move the piece
+    return False # player cannot move the piece
 
 
 def createNetworkClient():
