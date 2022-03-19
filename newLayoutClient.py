@@ -955,16 +955,18 @@ while True:
 
         elif twoPlayer:
             output = mouseMovementForOthers()
-            if output == "c":
+            # check if you should continue or break
+            if output == "c": # continue
                 continue
-            elif output == "b":
+            elif output == "b": # break
                 break
         elif AIPlayer:
             if chessBoard.playerOneTurn:
                 output = mouseMovementForOthers()
-                if output == "c":
+                # check if you should continue or break
+                if output == "c": # continue
                     continue
-                elif output == "b":
+                elif output == "b": # break
                     break
             else:
                 mainAIFunction(chessBoard.board)
