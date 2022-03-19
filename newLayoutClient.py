@@ -421,19 +421,19 @@ def againstOthersMenu():
                 onlineCheckForOtherPlayer() # check if there is another player
             onlinePlayerOneTurn = True # move is true
 
-            updateChessScreen()
-            pg.display.update()
-        elif playLocalButton.collidepoint(mouse):
+            updateChessScreen() # update the entire screen
+            pg.display.update() # update the pixels on the screen
+        elif playLocalButton.collidepoint(mouse): # check if button has been clicked
             # play on the same computer
-            twoPlayer = True
-            playerMode = False
-            updateChessScreen()
-            pg.display.update()
-        elif goBackButton.collidepoint(mouse):
+            twoPlayer = True # play against others
+            playerMode = False # not selecting anymore
+            updateChessScreen() # update the entire screen
+            pg.display.update() # update the pixels on the screen
+        elif goBackButton.collidepoint(mouse): # check if go back button has been clicked
             # go back to the main menu
-            playerMode = False
-            pg.display.update()
-    pg.display.update()
+            playerMode = False # go back to main menu
+            pg.display.update() # update the pixels on the screen
+    pg.display.update() # update the pixels on the screen
 
 def AIMinimax(positionCheck, alpha, beta, depth, maximise):
     """Find the best move for the AI"""
