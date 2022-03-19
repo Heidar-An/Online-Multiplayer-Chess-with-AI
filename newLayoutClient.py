@@ -782,10 +782,10 @@ def timeText():
     if onlinePlayer:
         playerTurn = onlinePlayerOneTurn
     if playerTurn:
-        textPrint = "Player 2 Won! (due to time)"
+        textPrint = "Player 2 Won! (due to time)" # create text sentence
 
-    text = timeFont.render(textPrint, True, ORANGE)
-    window.blit(text, (display[0] // 6, 50))
+    text = timeFont.render(textPrint, True, ORANGE) # create text object
+    window.blit(text, (display[0] // 6, 50)) # blit text onto screen
     checkmateCondition = True
 
 
