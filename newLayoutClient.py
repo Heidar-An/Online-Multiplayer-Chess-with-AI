@@ -695,14 +695,14 @@ def checkmateCheck(playerOneTurn):
     global font, textPrint, text, checkmateCondition
     if checkmate(chessBoard.board, playerOneTurn, False):
         # if there is a checkmate, show the text on screen
-        font = pg.font.SysFont("Helvetica", 75)
-        textPrint = "Player 1 Won!"
-        if chessBoard.playerOneTurn:
-            textPrint = "Player 2 Won!"
-        text = font.render(textPrint, True, TURQUOISE)
-        window.blit(text, (display[0] // 4, display[1] // 4))
-        pg.display.update()
-        checkmateCondition = True
+        font = pg.font.SysFont("Helvetica", 75) # create font object
+        textPrint = "Player 1 Won!" # create sentence 
+        if chessBoard.playerOneTurn: # check who's turn it is
+            textPrint = "Player 2 Won!" # create sentence
+        text = font.render(textPrint, True, TURQUOISE) # create text
+        window.blit(text, (display[0] // 4, display[1] // 4)) # blit text onto screen
+        pg.display.update() # update the screen
+        checkmateCondition = True # let program know that it is checkmate
 
 
 def onlineOtherPlayerTurn():
