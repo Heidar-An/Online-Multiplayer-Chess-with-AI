@@ -267,10 +267,10 @@ def AiDifficultyMenu():
     difficultOne = mediumFont.render("Difficulty 1 - Easiest (Low Power Mode)", True, WHITE) # put text onto screen
     difficultOneRect = difficultOne.get_rect() # get rectangle
     difficultOneRect.center = difficultOneButton.center # get centre of the button
-    pg.draw.rect(window, BLACK, difficultOneButton) # 
-    window.blit(difficultOne, difficultOneRect)
+    pg.draw.rect(window, BLACK, difficultOneButton) # put rectangle onto screen
+    window.blit(difficultOne, difficultOneRect) # blit button onto screen
 
-    difficultTwoButton = pg.Rect((widthCheck / 8), 300, widthCheck / 3, 50)
+    difficultTwoButton = pg.Rect((widthCheck / 8), 300, widthCheck / 3, 50) 
     difficultTwo = mediumFont.render("Difficulty 2 - Medium", True, WHITE)
     difficultTwoRect = difficultTwo.get_rect()
     difficultTwoRect.center = difficultTwoButton.center
