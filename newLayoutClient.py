@@ -503,12 +503,12 @@ def mainAIFunction(positionCheck):
                     if not any("green" in row for row in possibleCopy): # check if there is green
                         continue # if there are no possible moves, skip the loop
 
-                    for x in range(8):
-                        for y in range(8):
-                            if possibleCopy[x][y] == "green":
-                                positionCopy = copy.deepcopy(positionCheck)
-                                positionCopy[x][y] = positionCheck[i][j]
-                                positionCopy[i][j] = ""
+                    for x in range(8): # loop 8 times
+                        for y in range(8): # loop 8 times
+                            if possibleCopy[x][y] == "green": # check for green
+                                positionCopy = copy.deepcopy(positionCheck) # copy the position
+                                positionCopy[x][y] = positionCheck[i][j] # make move
+                                positionCopy[i][j] = "" # make move
                                 if kingInCheck(positionCopy, False) is False:
                                     newEval = AIMinimax(positionCopy, -10000, 10000, AiDepth, False)
                                     if newEval <= evaluation:
