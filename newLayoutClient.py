@@ -400,12 +400,12 @@ def againstOthersMenu():
     goBack = mediumFont.render("Go Back", True, WHITE) # create text
     goBackRect = goBack.get_rect() # get rectangle object
     goBackRect.center = goBackButton.center # get centre of button
-    pg.draw.rect(window, BLACK, goBackButton)
-    window.blit(goBack, goBackRect)
+    pg.draw.rect(window, BLACK, goBackButton) # draw rectangle
+    window.blit(goBack, goBackRect) # blit rectangle onto screen
 
     # if the mouse clicks button then assign what menu to go to
-    click, _, _ = pg.mouse.get_pressed()
-    if click == 1:
+    click, _, _ = pg.mouse.get_pressed() # has mouse been clicked
+    if click == 1: # 
         mouse = pg.mouse.get_pos()
         if playOnlineButton.collidepoint(mouse):
             # move to online game mode
