@@ -270,12 +270,12 @@ def AiDifficultyMenu():
     pg.draw.rect(window, BLACK, difficultOneButton) # put rectangle onto screen
     window.blit(difficultOne, difficultOneRect) # blit button onto screen
 
-    difficultTwoButton = pg.Rect((widthCheck / 8), 300, widthCheck / 3, 50) 
-    difficultTwo = mediumFont.render("Difficulty 2 - Medium", True, WHITE)
-    difficultTwoRect = difficultTwo.get_rect()
-    difficultTwoRect.center = difficultTwoButton.center
-    pg.draw.rect(window, BLACK, difficultTwoButton)
-    window.blit(difficultTwo, difficultTwoRect)
+    difficultTwoButton = pg.Rect((widthCheck / 8), 300, widthCheck / 3, 50) # create rectangle for button
+    difficultTwo = mediumFont.render("Difficulty 2 - Medium", True, WHITE) # create text
+    difficultTwoRect = difficultTwo.get_rect() # get rectangle 
+    difficultTwoRect.center = difficultTwoButton.center # get centre of button
+    pg.draw.rect(window, BLACK, difficultTwoButton) # draw rectangle
+    window.blit(difficultTwo, difficultTwoRect) # blit button onto screen
 
     difficultThreeButton = pg.Rect(5 * (widthCheck / 8), 300, widthCheck / 4, 50)
     difficultThree = mediumFont.render("Difficulty 3 - Hard", True, WHITE)
