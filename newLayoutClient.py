@@ -415,11 +415,11 @@ def againstOthersMenu():
             networkClient = Client() # create client object
             onlineColourId = networkClient.colourId # get colour of user
             onlinePreviousBoardPosition = networkClient.chessBoard.board # get board object
-            if onlineColourId == "b": # 
-                networkClient.chessBoard.otherPlayer = True
+            if onlineColourId == "b": # check if player is black
+                networkClient.chessBoard.otherPlayer = True # other player's turn
             else:
-                onlineCheckForOtherPlayer()
-            onlinePlayerOneTurn = True
+                onlineCheckForOtherPlayer() # check if there is another player
+            onlinePlayerOneTurn = True # move is true
 
             updateChessScreen()
             pg.display.update()
