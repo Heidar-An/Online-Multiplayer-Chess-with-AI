@@ -1,27 +1,27 @@
 from chess.PieceMovements import Pawn, Knight, Bishop, Rook, Queen, King ## used to get an object of each piece to place into the chessboard ##
 import copy ## used to copy variables and not affect the original variable ##
 
-bp = Pawn("b")
-bk = King("b")
-br = Rook("b")
-bb = Bishop("b")
-bq = Queen("b")
-bn = Knight("b")
+bp = Pawn("b") # instantiate pawn object
+bk = King("b") # instantiate king object
+br = Rook("b") # instantiate rook object
+bb = Bishop("b") # instantiate bishop object
+bq = Queen("b") # instantiate queen object
+bn = Knight("b") # instantiate knight object
 
-wp = Pawn("w")
-wk = King("w")
-wr = Rook("w")
-wb = Bishop("w")
-wq = Queen("w")
-wn = Knight("w")
-
+wp = Pawn("w") # instantiate pawn object
+wk = King("w") # instantiate king object
+wr = Rook("w") # instantiate rook object
+wb = Bishop("w") # instantiate bishop object
+wq = Queen("w") # instantiate queen object
+wn = Knight("w") # instantiate knight object
+ 
 
 class Board:
     def __init__(self):
-        self.board = [["" for i in range(8)] for j in range(8)]
-        self.possible = [["" for i in range(8)] for j in range(8)]
-        self.playerOneTurn = True
-        self.otherPlayer = False
+        self.board = [["" for i in range(8)] for j in range(8)] # create an empty board
+        self.possible = [["" for i in range(8)] for j in range(8)] # create an empty board
+        self.playerOneTurn = True # player one can move first
+        self.otherPlayer = False # other player cannot move
         self.board = [
             [br, bn, bb, bq, bk, bb, bn, br],
             [bp, bp, bp, bp, bp, bp, bp, bp],
@@ -31,7 +31,7 @@ class Board:
             ["", "", "", "", "", "", "", ""],
             [wp, wp, wp, wp, wp, wp, wp, wp],
             [wr, wn, wb, wq, wk, wb, wn, wr]
-        ]
+        ] # assign board
 
     def movePossible(self, mousePos, oldPieceX, oldPieceY):
         """Check if move is allowed"""
@@ -267,10 +267,10 @@ class Board:
 
     def checkEmpty(self, i, j):
         """Check whether board is empty in position"""
-        if self.board[i][j] == "":
+        if self.board[i][j] == "": # check if the board 
             return True
         return False
 
     def setPossible(self, possible):
         """Set the value of possible moves"""
-        self.possible = possible
+        self.possible = possible # set the possible moves
