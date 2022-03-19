@@ -409,10 +409,10 @@ def againstOthersMenu():
         mouse = pg.mouse.get_pos() # get position of mouse
         if playOnlineButton.collidepoint(mouse): # check if button has been clicked
             # move to online game mode
-            onlinePlayer = True
-            playerMode = False
+            onlinePlayer = True # go to online mode
+            playerMode = False # exit menu
 
-            networkClient = Client()
+            networkClient = Client() # create client object
             onlineColourId = networkClient.colourId
             onlinePreviousBoardPosition = networkClient.chessBoard.board
             if onlineColourId == "b":
