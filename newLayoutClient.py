@@ -654,9 +654,9 @@ def onlineMoveFunction():
     playerMove = networkClient.sendMoveData(movePieceCommand)
     # print(f"Player move = {playerMove}")
     if playerMove is True:
-        playerMove = False
-        onlinePlayerOneTurn = not onlinePlayerOneTurn
-        onlinePreviousBoardPosition = networkClient.chessBoard.board
+        playerMove = False 
+        onlinePlayerOneTurn = not onlinePlayerOneTurn # swap who the player's turn is
+        onlinePreviousBoardPosition = networkClient.chessBoard.board # get previous board position
         onlinePossible = [["" for i in range(8)] for j in range(8)]
         # Call checkmate after game function so text can be blited onto screen
         updateChessScreen()
@@ -666,20 +666,20 @@ def onlineMoveFunction():
 def OnlineSendPossible(possibleMoves):
     """Send the possible moves to the server"""
     global networkClient
-    networkClient.setPossible(possibleMoves)
+    networkClient.setPossible(possibleMoves) # set the possible moves
 
 
 def OnlineGetPossible():
     """Get the possible moves from the server"""
     global networkClient
-    possible = networkClient.getCurrentPossible()
-    return possible
+    possible = networkClient.getCurrentPossible() # get possible moves
+    return possible # return possible moves
 
 
 def OnlineGetBoard():
     """Get the current board object"""
     global networkClient
-    currentBoard = networkClient.receiveBoard()
+    currentBoard = networkClient.receiveBoard() 
     return currentBoard
 
 
