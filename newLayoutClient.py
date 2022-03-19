@@ -489,7 +489,7 @@ def mainAIFunction(positionCheck):
     global row, column, newY, newX, AiDepth, checkmateCondition
     evaluation = 10000 # eval = 10000
     rowMove, columnMove = -1, -1 # set current row and column to values not possible
-    previousRow, previousColumn = 0, 0
+    previousRow, previousColumn = 0, 0 # set previous row and column to  0 0 
     if checkmateCondition or chessBoard.playerOneTurn is True:
         return 0
 
