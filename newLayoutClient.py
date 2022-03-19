@@ -405,9 +405,9 @@ def againstOthersMenu():
 
     # if the mouse clicks button then assign what menu to go to
     click, _, _ = pg.mouse.get_pressed() # has mouse been clicked
-    if click == 1: # 
-        mouse = pg.mouse.get_pos()
-        if playOnlineButton.collidepoint(mouse):
+    if click == 1: # check if left mouse button has been clicked
+        mouse = pg.mouse.get_pos() # get position of mouse
+        if playOnlineButton.collidepoint(mouse): # check if button has been clicked
             # move to online game mode
             onlinePlayer = True
             playerMode = False
