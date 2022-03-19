@@ -443,7 +443,7 @@ def AIMinimax(positionCheck, alpha, beta, depth, maximise):
         evaluationCheck = getEvaluation(positionCheck, True, True) # get evaluation of page
     else:
         maxValue = -9999 # minimum value
-        evaluationCheck = getEvaluation(positionCheck, False, True)
+        evaluationCheck = getEvaluation(positionCheck, False, True) # get evaluation of board
     if evaluationCheck >= 900 or evaluationCheck <= -900 or depth == 0:
         return evaluationCheck
 
