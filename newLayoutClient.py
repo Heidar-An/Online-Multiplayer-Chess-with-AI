@@ -381,12 +381,12 @@ def againstOthersMenu():
     window.blit(chessTitle, (widthCheck // 3 + 40, 20)) # blit text onto screen
 
     # Two Buttons
-    playOnlineButton = pg.Rect((widthCheck / 8), (heightCheck / 3), widthCheck / 4, 50)
-    playOnline = mediumFont.render("Online Play", True, WHITE)
-    playOnlineRect = playOnline.get_rect()
-    playOnlineRect.center = playOnlineButton.center
-    pg.draw.rect(window, BLACK, playOnlineButton)
-    window.blit(playOnline, playOnlineRect)
+    playOnlineButton = pg.Rect((widthCheck / 8), (heightCheck / 3), widthCheck / 4, 50) # create rectangle
+    playOnline = mediumFont.render("Online Play", True, WHITE) # create text
+    playOnlineRect = playOnline.get_rect() # get rectangle
+    playOnlineRect.center = playOnlineButton.center # get centre of rectangle
+    pg.draw.rect(window, BLACK, playOnlineButton) # draw rectangle
+    window.blit(playOnline, playOnlineRect) # blit button onto screen
 
     playLocalButton = pg.Rect(5 * (widthCheck / 8), (heightCheck / 3), widthCheck / 4, 50)
     playLocal = mediumFont.render("Local Play", True, WHITE)
