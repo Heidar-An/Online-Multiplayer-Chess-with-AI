@@ -292,29 +292,29 @@ def AiDifficultyMenu():
     pg.draw.rect(window, BLACK, goBackButton) # draw rectangle
     window.blit(goBack, goBackRect) # blit button onto screen
 
-    click, _, _ = pg.mouse.get_pressed()
-    if click == 1: # 
-        mouse = pg.mouse.get_pos()
-        if difficultOneButton.collidepoint(mouse):
+    click, _, _ = pg.mouse.get_pressed() # check if mouse has been pressed
+    if click == 1: # check if left click has been pressed
+        mouse = pg.mouse.get_pos() # check mouse position
+        if difficultOneButton.collidepoint(mouse): # check if button has been pressed
             time.sleep(0.6)
-            AIPlayer = True
+            AIPlayer = True # 
             AiDifficulty = False
             AiDepth = 1
             updateChessScreen()
             pg.display.update()
-        elif difficultTwoButton.collidepoint(mouse):
+        elif difficultTwoButton.collidepoint(mouse): # check if button has been pressed
             AIPlayer = True
             AiDifficulty = False
             AiDepth = 2
             updateChessScreen()
             pg.display.update()
-        elif difficultThreeButton.collidepoint(mouse):
+        elif difficultThreeButton.collidepoint(mouse): # check if button has been pressed
             AIPlayer = True
             AiDifficulty = False
             AiDepth = 3
             updateChessScreen()
             pg.display.update()
-        elif goBackButton.collidepoint(mouse):
+        elif goBackButton.collidepoint(mouse): # check if button has been pressed
             AiDifficulty = False
             pg.display.update()
 
