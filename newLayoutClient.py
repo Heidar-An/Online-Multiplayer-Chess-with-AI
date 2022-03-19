@@ -350,11 +350,11 @@ def mainMenu():
 
     playTwoButton = pg.Rect(5 * (widthCheck / 8), (heightCheck / 2), widthCheck / 4, 50)
     playTwo = mediumFont.render("Against others", True, BLACK)
-    playTwoRect = playTwo.get_rect()
-    playTwoRect.center = playTwoButton.center
-    pg.draw.rect(window, WHITE, playTwoButton)
-    window.blit(playTwo, playTwoRect)
-    pg.display.update()
+    playTwoRect = playTwo.get_rect() # get rectangle
+    playTwoRect.center = playTwoButton.center # get centre of button
+    pg.draw.rect(window, WHITE, playTwoButton) # draw rectangle onto screen
+    window.blit(playTwo, playTwoRect) # blit button onto screen
+    pg.display.update() # update screen
 
     # if the mouse clicks button then assign what menu to go to
     click, _, _ = pg.mouse.get_pressed()
