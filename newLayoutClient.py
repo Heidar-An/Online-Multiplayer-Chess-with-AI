@@ -448,9 +448,9 @@ def AIMinimax(positionCheck, alpha, beta, depth, maximise):
         return evaluationCheck # return evaluation
 
     # search through all possible moves, and find what the best move is
-    for i in range(8):
-        for j in range(8):
-            if positionCheck[i][j] != "":
+    for i in range(8): # loop 8 times
+        for j in range(8): # loop 8 times 
+            if positionCheck[i][j] != "": # check if position is empty
                 if (positionCheck[i][j].colour == "b" and maximise) or (
                         maximise is False and positionCheck[i][j].colour == "w"):
                     possibleCopy = [["" for i in range(8)] for j in range(8)]
