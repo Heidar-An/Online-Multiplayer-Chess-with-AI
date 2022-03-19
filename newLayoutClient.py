@@ -709,7 +709,7 @@ def onlineOtherPlayerTurn():
     """Check if it's the other players turn"""
     if (onlineColourId == "b" and onlinePlayerOneTurn) \
             or (onlineColourId == "w" and onlinePlayerOneTurn is False):
-        return True
+        return True # check if it is the other player's turn
     return False
 
 
@@ -718,15 +718,17 @@ def showTime():
     global playerOneSec, playerOneTime, playerOneMin, playerTwoTime, playerTwoMin, playerTwoSec, previousTime, \
         onlinePlayer, onlinePlayerOneTurn, onlinePossible, checkmateCondition
 
-    if checkmateCondition:
+    if checkmateCondition: # check if it is checkmate
         return
 
-    updateChessScreen()
+    updateChessScreen() # update the entire screen
     if onlinePlayer:
         if onlineOtherPlayerTurn() is False:
             moves(onlinePossible)
     else:
         moves(chessBoard.possible)
+
+    # display possible moves onto screen
 
     # every second, remove a second from the player's time
     currTime = time.time()
