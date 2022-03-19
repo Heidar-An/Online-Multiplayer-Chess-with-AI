@@ -392,8 +392,8 @@ def againstOthersMenu():
     playLocal = mediumFont.render("Local Play", True, WHITE) # create text
     playLocalRect = playLocal.get_rect() # get rectangle object
     playLocalRect.center = playLocalButton.center # get centre of rectangle
-    pg.draw.rect(window, BLACK, playLocalButton)
-    window.blit(playLocal, playLocalRect)
+    pg.draw.rect(window, BLACK, playLocalButton) # get rectangle 
+    window.blit(playLocal, playLocalRect) # blit button onto screen
 
     # button that allows user to go back to the main menu
     goBackButton = pg.Rect((widthCheck // 16), 100, widthCheck // 5, 50)
