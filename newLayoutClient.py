@@ -361,13 +361,13 @@ def mainMenu():
     if click == 1: # check if the left mouse button has been clicked
         mouse = pg.mouse.get_pos() # get position of mouse
         if playTwoButton.collidepoint(mouse): # check if button has been clicked
-            playerMode = True # 
-            pg.display.update()
+            playerMode = True # playing against others
+            pg.display.update() # update screen
         elif playAIButton.collidepoint(mouse):
-            AiDifficulty = True
-            pg.display.update()
+            AiDifficulty = True # choose difficulty of AI
+            pg.display.update() # update screen
         elif changeColButton.collidepoint(mouse):
-            changeColor = True
+            changeColor = True # go to colour picker
 
 def againstOthersMenu():
     """Against Others Menu"""
