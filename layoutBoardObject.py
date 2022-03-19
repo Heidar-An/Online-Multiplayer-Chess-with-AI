@@ -256,18 +256,18 @@ class Board:
     def checkPieceExists(self, pos):
         """check if there is a piece at certain position"""
         column, row = pos
-        column, row = column // 70, (row - 110) // 70
-        if self.board[row][column] == "":
+        column, row = column // 70, (row - 110) // 70 # get row and column
+        if self.board[row][column] == "": # 
             return False
         return True
 
     def getPosition(self):
         """get position of board"""
-        return self.board
+        return self.board # return current board
 
     def checkEmpty(self, i, j):
         """Check whether board is empty in position"""
-        if self.board[i][j] == "": # check if the board 
+        if self.board[i][j] == "": # check if the position is empty
             return True
         return False
 
