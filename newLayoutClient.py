@@ -469,19 +469,19 @@ def AIMinimax(positionCheck, alpha, beta, depth, maximise):
                                 if maximise: # check if maximising
                                     if kingInCheck(positionCopy, False) is False:
                                         newEval = AIMinimax(positionCopy, alpha, beta, depth - 1, not maximise)
-                                        maxValue = min(newEval, maxValue)
-                                        beta = min(beta, maxValue)
+                                        maxValue = min(newEval, maxValue) # get the min
+                                        beta = min(beta, maxValue) # get the min
                                         if beta <= alpha:
-                                            return maxValue
+                                            return maxValue # return max value
                                 else: # or minimising
                                     if kingInCheck(positionCopy, True) is False:
                                         newEval = AIMinimax(positionCopy, alpha, beta, depth - 1, not maximise)
-                                        maxValue = max(newEval, maxValue)
-                                        alpha = max(alpha, maxValue)
+                                        maxValue = max(newEval, maxValue) # get the max
+                                        alpha = max(alpha, maxValue) # get the max
                                         if beta <= alpha:
-                                            return maxValue
+                                            return maxValue # return max value
 
-    return maxValue
+    return maxValue # return max value
 
 
 def mainAIFunction(positionCheck):
