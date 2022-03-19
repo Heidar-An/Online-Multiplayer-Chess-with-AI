@@ -622,16 +622,16 @@ def OnlineCheckPiece(mousePos):
 
 
 def OnlineCheckPlayerTurn(mousePos):
-    """Get if the player can move piece"""
+    """Check if the player can move piece"""
     global onlineBoardPosition, onlineColourId
     columnPiece, rowPiece = mousePos # seperate tuple
     columnPiece, rowPiece = columnPiece // 70, (rowPiece - 110) // 70 # get row and column
 
-    colour = onlineBoardPosition[rowPiece][columnPiece].colour
+    colour = onlineBoardPosition[rowPiece][columnPiece].colour # get colour of piece
     # print(colour, onlinePlayerOneTurn, onlineColourId)
     if (colour == "w" and onlinePlayerOneTurn and onlineColourId == "w") \
             or (colour == "b" and onlinePlayerOneTurn is False and onlineColourId == "b"):
-        return True
+        return True # 
     return False
 
 
