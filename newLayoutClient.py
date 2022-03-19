@@ -555,9 +555,9 @@ def waitingForOtherPlayer():
     """
     font = pg.font.SysFont("Helvetica", 60) # create text
     textPrint = "Waiting for another player..." # sentence to show on screen
-    text = font.render(textPrint, True, TURQUOISE) # 
-    window.blit(text, (display[0] // 8, 0))
-    pg.display.update()
+    text = font.render(textPrint, True, TURQUOISE) # put font on screen
+    window.blit(text, (display[0] // 8, 0)) # blit text onto screen
+    pg.display.update() # update the screen
 
 
 # Make sure that there is another player in the game
@@ -567,8 +567,8 @@ def onlineCheckForOtherPlayer():
         # code can start
         return True
     else:
-        updateChessScreen()
-        waitingForOtherPlayer()
+        updateChessScreen() # update the screen
+        waitingForOtherPlayer() # wait for another player to join the game
         while True:
             otherPlayerCondition = networkClient.checkForOtherPlayer()
             # if the otherPlayerCondition is true, then there is another player
@@ -581,8 +581,8 @@ def onlineCheckForOtherPlayer():
 def onlineCompareLists(currentBoardPosition):
     """Used to compare if two game positions are different"""
     global onlinePreviousBoardPosition
-    for i in range(8):
-        for j in range(8):
+    for i in range(8): # loop 8 times 
+        for j in range(8): # loop 8 times
             if onlinePreviousBoardPosition[i][j] == "":
                 if currentBoardPosition[i][j] == "":
                     continue
