@@ -455,13 +455,13 @@ def AIMinimax(positionCheck, alpha, beta, depth, maximise):
                         maximise is False and positionCheck[i][j].colour == "w"):
                     possibleCopy = [["" for i in range(8)] for j in range(8)]
                     possibleCopy = pieceMoves(i, j, possibleCopy, positionCheck)
-                    if not any("green" in checkRow for checkRow in possibleCopy):
+                    if not any("green" in checkRow for checkRow in possibleCopy): # check if this piece can move
                         continue
-                    for x in range(8):
-                        for y in range(8):
+                    for x in range(8): # loop 8 times
+                        for y in range(8): # loop 8 times
                             # go through moves that are possible
-                            if possibleCopy[x][y] == "green":
-                                positionCopy = copy.deepcopy(positionCheck)
+                            if possibleCopy[x][y] == "green": # check if move is possible 
+                                positionCopy = copy.deepcopy(positionCheck) # copy position
                                 positionCopy[x][y] = positionCheck[i][j]
                                 positionCopy[i][j] = ""
 
