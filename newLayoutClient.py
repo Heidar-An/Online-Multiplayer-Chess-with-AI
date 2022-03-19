@@ -372,13 +372,13 @@ def mainMenu():
 def againstOthersMenu():
     """Against Others Menu"""
     global onlinePlayer, twoPlayer, playerMode, networkClient, onlinePlayerOneTurn, onlineColourId, onlineBoardObject, onlinePreviousBoardPosition
-    window.fill(WHITE)
-    widthCheck = display[0]
-    heightCheck = display[1]
+    window.fill(WHITE) # make screen white
+    widthCheck = display[0] # get width
+    heightCheck = display[1] # get height
 
     # Title of program
-    chessTitle = mediumFont.render("Choose Mode", True, RED)
-    window.blit(chessTitle, (widthCheck // 3 + 40, 20))
+    chessTitle = mediumFont.render("Choose Mode", True, RED) # create text
+    window.blit(chessTitle, (widthCheck // 3 + 40, 20)) # blit text onto screen
 
     # Two Buttons
     playOnlineButton = pg.Rect((widthCheck / 8), (heightCheck / 3), widthCheck / 4, 50)
