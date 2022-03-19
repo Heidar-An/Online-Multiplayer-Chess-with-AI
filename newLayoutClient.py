@@ -517,18 +517,18 @@ def mainAIFunction(positionCheck):
                                         previousRow, previousColumn = i, j # set previous row and column to position
 
     row, column = previousRow, previousColumn
-    movePiece(columnMove, rowMove)
+    movePiece(columnMove, rowMove) # move piece
 
 
 def movePiece(moveX, moveY):
     # updateChessScreen() # - not sure if necessary
     """called to move piece when playing on same computer"""
-    if chessBoard.playerOneTurn:
+    if chessBoard.playerOneTurn: # check if other player's turn
         return 0
-    chessBoard.movePiece(moveX, moveY, column, row)
+    chessBoard.movePiece(moveX, moveY, column, row) # move piece
 
-    chessBoard.playerOneTurn = True
-    updateChessScreen()
+    chessBoard.playerOneTurn = True # make player one's turn true
+    updateChessScreen() # update the entire screen
 
 
 def mainMoveFunction():
