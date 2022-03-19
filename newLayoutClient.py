@@ -255,19 +255,19 @@ def changeColorMenu(events):
 def AiDifficultyMenu():
     """Menu to select the difficulty of the AI"""
     global AIPlayer, AiDifficulty, AiDepth
-    window.fill(WHITE)
-    widthCheck = display[0]
+    window.fill(WHITE) # make screen white
+    widthCheck = display[0] # get the width of the screen
 
     # Title for the screen
-    difficultyTitle = mediumFont.render("Choose Difficulty", True, RED)
-    window.blit(difficultyTitle, (widthCheck // 3 + 40, 40))
+    difficultyTitle = mediumFont.render("Choose Difficulty", True, RED) # make text for AI
+    window.blit(difficultyTitle, (widthCheck // 3 + 40, 40)) # put text onto screen
 
     # Three buttons for each difficulty
-    difficultOneButton = pg.Rect(2 * (widthCheck / 8), 200, widthCheck / 2, 50)
-    difficultOne = mediumFont.render("Difficulty 1 - Easiest (Low Power Mode)", True, WHITE)
-    difficultOneRect = difficultOne.get_rect()
-    difficultOneRect.center = difficultOneButton.center
-    pg.draw.rect(window, BLACK, difficultOneButton)
+    difficultOneButton = pg.Rect(2 * (widthCheck / 8), 200, widthCheck / 2, 50) # create rectangle
+    difficultOne = mediumFont.render("Difficulty 1 - Easiest (Low Power Mode)", True, WHITE) # put text onto screen
+    difficultOneRect = difficultOne.get_rect() # get rectangle
+    difficultOneRect.center = difficultOneButton.center # get centre of the button
+    pg.draw.rect(window, BLACK, difficultOneButton) # 
     window.blit(difficultOne, difficultOneRect)
 
     difficultTwoButton = pg.Rect((widthCheck / 8), 300, widthCheck / 3, 50)
