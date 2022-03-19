@@ -348,8 +348,8 @@ def mainMenu():
     pg.draw.rect(window, WHITE, playAIButton) # draw rectangle onto screen
     window.blit(playAI, playAIRect) # blit button onto screen
 
-    playTwoButton = pg.Rect(5 * (widthCheck / 8), (heightCheck / 2), widthCheck / 4, 50)
-    playTwo = mediumFont.render("Against others", True, BLACK)
+    playTwoButton = pg.Rect(5 * (widthCheck / 8), (heightCheck / 2), widthCheck / 4, 50) # create rectangle 
+    playTwo = mediumFont.render("Against others", True, BLACK) # create text
     playTwoRect = playTwo.get_rect() # get rectangle
     playTwoRect.center = playTwoButton.center # get centre of button
     pg.draw.rect(window, WHITE, playTwoButton) # draw rectangle onto screen
