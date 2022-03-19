@@ -775,8 +775,8 @@ def showTime():
 def timeText():
     """Display text showing player lost due to time"""
     global checkmateCondition, onlinePlayer, onlinePlayerOneTurn
-    timeFont = pg.font.SysFont("Helvetica", 40)
-    textPrint = "Player 1 Won! (due to time)"
+    timeFont = pg.font.SysFont("Helvetica", 40) # create font object
+    textPrint = "Player 1 Won! (due to time)" # create text sentence
 
     playerTurn = chessBoard.playerOneTurn
     if onlinePlayer:
