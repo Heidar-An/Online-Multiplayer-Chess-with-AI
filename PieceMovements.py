@@ -379,13 +379,13 @@ class Queen:
             [-2.0, -1.0, -1.0, -0.5, -0.5, -1.0, -1.0, -2.0]
         ]
         if AiTurn:
-            evalList.reverse()
-        evaluation = evalList[i][j]
-        return evaluation
+            evalList.reverse() # reverse it if it is the other player's turn 
+        evaluation = evalList[i][j] # get eval
+        return evaluation # return eval
 
     def possibleMoves(self, row, column, possibleMoves, boardPosition):
         """Return all possible queen moves"""
         # queen moves is the same as the rook moves + bishop moves
         bishopMoves = Bishop(self.colour).possibleMoves(row, column, possibleMoves, boardPosition)
         queenMoves = Rook(self.colour).possibleMoves(row, column, bishopMoves, boardPosition)
-        return queenMoves
+        return queenMoves # return possible moves
