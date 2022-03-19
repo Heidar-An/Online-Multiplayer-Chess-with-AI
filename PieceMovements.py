@@ -70,10 +70,9 @@ class Bishop: # class for bishop
             columnTemp += 1
             if check(row, columnTemp):
                 if boardPosition[i][columnTemp] == "":
-                    possibleMoves[i][columnTemp] = "green"
+                    possibleMoves[i][columnTemp] = "green" # bishopp can move here
                 elif boardPosition[i][columnTemp].colour != self.colour:
-                    boardPosition[i][columnTemp].killable = True
-                    possibleMoves[i][columnTemp] = "green"
+                    possibleMoves[i][columnTemp] = "green" # piece can move here
                     break
                 else:
                     break
