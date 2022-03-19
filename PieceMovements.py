@@ -33,7 +33,7 @@ class Bishop: # class for bishop
         if AiTurn:
             evalList.reverse() # reverse it if it is the other player's turn
         evaluation = evalList[i][j] # get evaluation
-        return evaluation # return
+        return evaluation # return eval
 
     def possibleMoves(self, row, column, possibleMoves, boardPosition):
         """find all possible bishop moves at a certain position"""
@@ -117,9 +117,9 @@ class Pawn:
             [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
         ]
         if AiTurn:
-            evalList.reverse()
-        evaluation = evalList[i][j]
-        return evaluation
+            evalList.reverse() # reverse it if it is the other player's turn
+        evaluation = evalList[i][j] # get eval
+        return evaluation # return eval
 
     def possibleMoves(self, row, column, possibleMoves, boardPosition):
         """Return all possible pawn moves"""
@@ -171,6 +171,7 @@ class Knight:
 
     def eval(self, i, j, AiTurn):
         """Get the evaluation of the piece at a certain position"""
+        # used for AI, get the evaluation at different positions
         evalList = [
             [-5.0, -4.0, -3.0, -3.0, -3.0, -3.0, -4.0, -5.0],
             [-4.0, -2.0, 0.0, 0.0, 0.0, 0.0, -2.0, -4.0],
@@ -214,6 +215,7 @@ class Rook:
 
     def eval(self, i, j, AiTurn):
         """Get the evaluation of the piece at a certain position"""
+        # used for AI, get the evaluation at different positions
         evalList = [
             [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
             [0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.5],
@@ -288,6 +290,7 @@ class King:
 
     def eval(self, i, j, AiTurn):
         """Get the evaluation of the piece at a certain position"""
+        # used for AI, get the evaluation at different positions
         evalList = [
             [-3.0, -4.0, -4.0, -5.0, -5.0, -4.0, -4.0, -3.0],
             [-3.0, -4.0, -4.0, -5.0, -5.0, -4.0, -4.0, -3.0],
@@ -363,6 +366,7 @@ class Queen:
 
     def eval(self, i, j, AiTurn):
         """Get the evaluation of the piece at a certain position"""
+        # used for AI, get the evaluation at different positions
         evalList = [
             [-2.0, -1.0, -1.0, -0.5, -0.5, -1.0, -1.0, -2.0],
             [-1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0],
