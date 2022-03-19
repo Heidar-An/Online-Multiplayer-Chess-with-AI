@@ -438,11 +438,11 @@ def againstOthersMenu():
 def AIMinimax(positionCheck, alpha, beta, depth, maximise):
     """Find the best move for the AI"""
     # maximise is True when it's AI's turn
-    if maximise:
-        maxValue = 9999
-        evaluationCheck = getEvaluation(positionCheck, True, True)
+    if maximise: # check if you are maximising the game
+        maxValue = 9999 # get maximum value
+        evaluationCheck = getEvaluation(positionCheck, True, True) # get evaluation of page
     else:
-        maxValue = -9999
+        maxValue = -9999 # minimum value
         evaluationCheck = getEvaluation(positionCheck, False, True)
     if evaluationCheck >= 900 or evaluationCheck <= -900 or depth == 0:
         return evaluationCheck
