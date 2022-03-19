@@ -391,7 +391,7 @@ def againstOthersMenu():
     playLocalButton = pg.Rect(5 * (widthCheck / 8), (heightCheck / 3), widthCheck / 4, 50) # create rectangle 
     playLocal = mediumFont.render("Local Play", True, WHITE) # create text
     playLocalRect = playLocal.get_rect() # get rectangle object
-    playLocalRect.center = playLocalButton.center # get centre of rectangle
+    playLocalRect.center = playLocalButton.center # get centre of button
     pg.draw.rect(window, BLACK, playLocalButton) # get rectangle 
     window.blit(playLocal, playLocalRect) # blit button onto screen
 
