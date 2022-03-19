@@ -439,7 +439,7 @@ def AIMinimax(positionCheck, alpha, beta, depth, maximise):
     """Find the best move for the AI"""
     # maximise is True when it's AI's turn
     if maximise: # check if you are maximising the game
-        maxValue = 9999 # get maximum value
+        maxValue = 9999 # maximum value
         evaluationCheck = getEvaluation(positionCheck, True, True) # get evaluation of page
     else:
         maxValue = -9999 # minimum value
