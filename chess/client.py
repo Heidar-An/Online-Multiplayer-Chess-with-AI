@@ -1,8 +1,6 @@
-import socket ## used for connecting users together ##
-import pickle ## used for transferring data, almost like JSON ##
+import socket
+import pickle
 
-
-# used for client side of chess
 class Client:
     def __init__(self):
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

@@ -1,5 +1,5 @@
 from chess.PieceMovements import Pawn, Knight, Bishop, Rook, Queen, King
-import copy
+import copy ## used to copy variables and not affect the original variable ##
 
 bp = Pawn("b")
 bk = King("b")
@@ -43,9 +43,13 @@ class Board:
         pieceX, pieceY = mousePos
         pieceX, pieceY = pieceX // 70, (pieceY - 110) // 70
         playerMove = False
-        
+
+        # print(f"x co: {pieceX}, y co: {pieceY}")
+        # print(f"the move is {self.possible[pieceY][pieceX]}")
         # check if the move is possible for this piece
         if self.possible[pieceY][pieceX] == "green":
+            # print("MOVE IS POSSIBLE")
+            # print("KingInCheck is being called")
             kingInCheck = self.kingInCheck(self.board, self.playerOneTurn)
             if kingInCheck:
                 # king is in check, now check if this move will make king not be in check
@@ -54,6 +58,7 @@ class Board:
                     playerMove = True
                     self.playerOneTurn = not self.playerOneTurn
             else:
+                # print(pieceX, pieceY, oldPieceX, oldPieceY)
                 self.movePiece(pieceX, pieceY, oldPieceX, oldPieceY)
                 self.playerOneTurn = not self.playerOneTurn
                 playerMove = True
@@ -63,6 +68,7 @@ class Board:
     def movePiece(self, newPieceX, newPieceY, oldPieceX, oldPieceY):
         """Move Piece on board"""
         # Castling function
+        # print("MOVE PIECE is being called")
 
         if self.board[oldPieceY][oldPieceX].type == "k" or self.board[oldPieceY][oldPieceX].type == "r":
             self.board[oldPieceY][oldPieceX].moved = True
@@ -97,13 +103,12 @@ class Board:
 
     def moveEndCheck(self, newPieceX, newPieceY, oldPieceX, oldPieceY, boardPosition, playerOneTurn):
         """checks if move sent to function would remove check, false means that the king won't be in check"""
-
-        # make sure that pieces aren't empty
         if oldPieceX is None or oldPieceY is None:
             return
         boardPositionCopy = copy.deepcopy(boardPosition)
         boardPositionCopy[newPieceY][newPieceX] = boardPositionCopy[oldPieceY][oldPieceX]
         boardPositionCopy[oldPieceY][oldPieceX] = ""
+        # print("IN THE BOARD THERE SHOULD BE", boardPosition[oldPieceY][oldPieceX])
         return self.kingInCheck(boardPositionCopy, playerOneTurn)
 
     def kingInCheck(self, boardPosition, playerOneTurn):
@@ -157,7 +162,10 @@ class Board:
                             possibleCopy = boardPosition[posX][posY].possibleMoves(cross[i][j][0],
                                                                                    cross[i][j][1], possibleCopy,
                                                                                    boardPosition)
+                            # possibleCopy = pieceMoves(boardPosition[posX][posY].type, cross[i][j][0],
+                            #                           cross[i][j][1], possibleCopy, boardPosition)
                             if possibleCopy[kingI][kingJ] == "green":
+                                # kingInCheckCondition = True
                                 return True
 
         # find knight movements around king
@@ -174,7 +182,10 @@ class Board:
                                     possibleCopy = boardPosition[posX][posY].possibleMoves(posX,
                                                                                            posY, possibleCopy,
                                                                                            boardPosition)
+                                    # possibleCopy = pieceMoves(boardPosition[posX][posY].type, posX,
+                                    #                           posY, possibleCopy, boardPosition)
                                     if possibleCopy[kingI][kingJ] == "green":
+                                        # kingInCheckCondition = True
                                         return True
         return False
 
@@ -231,6 +242,7 @@ class Board:
 
     def checkPlayerTurn(self, pos):
         """check who's turn it is"""
+        # print("CHECK PLAYER IS BEING CALLED", self.playerOneTurn)
         column, row = pos
         column, row = column // 70, (row - 110) // 70
 
