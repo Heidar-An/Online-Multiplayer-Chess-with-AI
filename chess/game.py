@@ -1,13 +1,12 @@
-import pygame as pg ## used for display and graphics ##
-from pygame import * ## so the program does not need to say pygame.something##
-from chess.layoutBoardObject import Board ## imports the board class ##
-from chess.client import Client ## imports the client class ##
-import time ## imports time so it can be used for the timer of each player ##
-import copy ## used to copy variables and arrays and not change the original variable ##
+import pygame as pg
+from pygame import *
+from chess.layoutBoardObject import Board
+from chess.client import Client
+import time 
+import copy 
 
 chessBoard = Board()
 
-# defining colours
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
@@ -19,7 +18,6 @@ BoardColour = (165, 42, 42)
 
 display = [800, 800]
 
-# defining some datastructures and variables
 onlinePossible = [["" for i in range(8)] for j in range(8)]
 onlineBoardPosition = [["" for x in range(8)] for y in range(8)]
 onlineBoardObject, onlinePreviousBoardPosition = None, onlineBoardPosition
@@ -141,51 +139,6 @@ def moveEndCheckPosition(newColumn, newRow, oldColumn, oldRow, boardPosition, pl
     """checks if move sent to function would remove check used for checkmate function, false means that the king
     won't be in check """
     return chessBoard.moveEndCheck(newColumn, newRow, oldRow, oldColumn, boardPosition, playerOneTurn)
-
-
-# def kingCheck(row, column, possibleMoves, positionCheck):
-#     """Get king's possible moves"""
-#     global kingWillMove
-#     colour = positionCheck[row][column].colour
-#     # all king moves
-#     for i in range(-1, 2):
-#         for j in range(-1, 2):
-#             if check(row + i, column + j):
-#                 if positionCheck[row + i][column + j] == "":
-#                     possibleMoves[row + i][column + j] = "green"
-#                 elif positionCheck[row + i][column + j].colour != colour:
-#                     possibleMoves[row + i][column + j] = "green"
-#     # Castling
-#     if colour == "w":
-#         if row == 7 and column == 4:
-#             if positionCheck[7][4].moved is False:
-#                 if positionCheck[7][5] == "" and positionCheck[7][6] == "" and positionCheck[7][7] != "":
-#                     if positionCheck[7][7].type == "r":
-#                         if positionCheck[7][7].moved is False:
-#                             possibleMoves[7][6] = "green"
-#                             kingWillMove = True
-#                 if positionCheck[7][3] == "" and positionCheck[7][2] == "" and positionCheck[7][1] == "" and \
-#                         positionCheck[7][0] != "":
-#                     if positionCheck[7][0].type == "r":
-#                         if positionCheck[7][0].moved is False:
-#                             possibleMoves[7][2] = "green"
-#                             kingWillMove = True
-#     if colour == "b":
-#         if row == 0 and column == 4:
-#             if positionCheck[0][4].moved is False:
-#                 if positionCheck[0][5] == "" and positionCheck[0][6] == "" and positionCheck[0][7] != "":
-#                     if positionCheck[0][7].type == "r":
-#                         if positionCheck[0][7].moved is False:
-#                             possibleMoves[0][6] = "green"
-#                             kingWillMove = True
-#                 if positionCheck[0][3] == "" and positionCheck[0][2] == "" and positionCheck[0][1] == "" and \
-#                         positionCheck[0][0] != "":
-#                     if positionCheck[0][0].type == "r":
-#                         if positionCheck[0][0].moved is False:
-#                             possibleMoves[0][2] = "green"
-#                             kingWillMove = True
-#
-#     return possibleMoves
 
 
 def pieceMoves(pieceY, pieceX, possibleMoves, boardPosition):
@@ -504,7 +457,6 @@ def mainAIFunction(positionCheck):
 
 
 def movePiece(moveX, moveY):
-    # updateChessScreen() # - not sure if necessary
     """called to move piece when playing on same computer"""
     if chessBoard.playerOneTurn:
         return 0
@@ -598,11 +550,6 @@ def againstOthersMenu():
     pg.display.update()
 
 
-# Make sure that there is another player in the game
-def onlineCheckForOtherPlayer():
-    pass
-
-
 def onlineCompareLists(currentBoardPosition):
     """Used to compare if two game positions are different"""
     global onlinePreviousBoardPosition
@@ -677,7 +624,6 @@ def onlineMoveFunction():
         mousePos[1])
 
     playerMove = networkClient.sendMoveData(movePieceCommand)
-    # print(f"Player move = {playerMove}")
     if playerMove is True:
         playerMove = False
         onlinePlayerOneTurn = not onlinePlayerOneTurn
@@ -685,7 +631,6 @@ def onlineMoveFunction():
         onlinePossible = [["" for i in range(8)] for j in range(8)]
         # Call checkmate after game function so text can be blited onto screen
         updateChessScreen()
-        # checkmateCheck(chessBoard.playerOneTurn)
 
 
 def OnlineSendPossible(possibleMoves):
@@ -842,8 +787,6 @@ def mouseMovementForOthers():
                 # place piece is made false in case they press a square that wasn't a move,
                 # they are forced to press the piece again
                 columnCheck, rowCheck = pos[0] // 70, (pos[1] - 110) // 70
-                # print(f"there is a checkPiece(pos)")
-                # print(f"the new position is {chessBoard.possible[rowCheck][columnCheck]}")
                 if checkPiece(pos) is False and chessBoard.possible[rowCheck][columnCheck] == "":
                     # check if player has pressed an empty square NOT in possible moves
                     chessBoard.possible = [["" for i in range(8)] for j in range(8)]
@@ -851,7 +794,6 @@ def mouseMovementForOthers():
                     updateChessScreen()
                 elif checkPiece(pos) and chessBoard.possible[rowCheck][columnCheck]:
                     # Player has not clicked on an empty square, or another piece
-                    # print("clicking function is working")
                     mainMoveFunction()
                     placePiece = False
         else:
